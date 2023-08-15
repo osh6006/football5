@@ -29,6 +29,18 @@ const Logo = styled.img`
   }
 `;
 
+const MobileLogo = styled.h1`
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: ${(props) => props.theme.colors.primary};
+  text-align: center;
+  margin-bottom: 3rem;
+
+  @media (min-width: 1280px) {
+    display: none;
+  }
+`;
+
 const Navigation = styled.nav`
   width: 100%;
   display: flex;
@@ -76,6 +88,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
   return (
     <SidebarWrapper>
       <Logo src={"/images/logo.png"} />
+      <MobileLogo>TSR</MobileLogo>
       <Navigation>
         {menus?.map((menu) => (
           <Menu key={menu.name} to={menu.path}>
