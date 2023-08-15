@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { RouteType } from "../../util/routes";
 
 interface SidebarProps {
@@ -7,7 +7,9 @@ interface SidebarProps {
 }
 
 const SidebarWrapper = styled.aside`
-  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
   padding: 20px;
   border-right: 1px solid #c9c9c9;
 
@@ -20,7 +22,6 @@ const SidebarWrapper = styled.aside`
 `;
 
 const Logo = styled.img`
-  object-fit: contain;
   transform: scale(0.8);
 
   @media (max-width: 1280px) {
@@ -29,22 +30,38 @@ const Logo = styled.img`
 `;
 
 const Navigation = styled.nav`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 `;
 
-const Menu = styled.li`
+const Menu = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1.2rem;
   padding: 1rem 2rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
+  color: ${(props) => props.theme.colors.primary};
 
   &:hover {
-    background-color: #d3d3d3;
-    transition: all 0.5s ease;
+    background-color: ${(props) => props.theme.colors.activeBackground};
+    transition: background 0.5s ease;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  &.active {
+    font-weight: bold;
+    background-color: ${(props) => props.theme.colors.activeBackground};
+  }
+
+  @media (max-width: 1280px) {
+    padding: 1rem 1rem;
   }
 `;
 
@@ -55,15 +72,14 @@ const MenuName = styled.p`
 `;
 
 const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
-  const navigate = useNavigate();
-
+  const { pathname } = useLocation();
   return (
     <SidebarWrapper>
       <Logo src={"/images/logo.png"} />
       <Navigation>
         {menus?.map((menu) => (
-          <Menu key={menu.name} onClick={() => navigate(menu.path)}>
-            <menu.icon size={25} />
+          <Menu key={menu.name} to={menu.path}>
+            {pathname === menu.path ? <menu.activeIcon size={25} /> : <menu.icon size={25} />}
             <MenuName>{menu.name}</MenuName>
           </Menu>
         ))}

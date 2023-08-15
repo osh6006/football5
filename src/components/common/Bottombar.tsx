@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { RouteType } from "../../util/routes";
 import { NavLink, useLocation } from "react-router-dom";
 
-interface BottombarProps {
+interface BottomBarProps {
   menus: RouteType[];
 }
 
@@ -35,7 +35,7 @@ const BottomMenu = styled(NavLink)`
   }
 `;
 
-const Bottombar: React.FC<BottombarProps> = ({ menus }) => {
+const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
   const { pathname } = useLocation();
 
   return (
@@ -49,4 +49,4 @@ const Bottombar: React.FC<BottombarProps> = ({ menus }) => {
   );
 };
 
-export default Bottombar;
+export default BottomBar;

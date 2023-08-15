@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/common/Sidebar";
 import styled from "styled-components";
 import { NavRoutes } from "../util/routes";
-import Bottombar from "../components/common/Bottombar";
+import BottomBar from "../components/common/BottomBar";
 
 const RootWrapper = styled.main`
   position: relative;
@@ -15,7 +15,7 @@ export default function Root() {
   return (
     <RootWrapper>
       <Sidebar menus={NavRoutes} />
-      <Bottombar menus={NavRoutes} />
+      <BottomBar menus={NavRoutes} />
       <Outlet />
     </RootWrapper>
   );
