@@ -8,6 +8,7 @@ const Theme: DefaultTheme = {
     secondaryVariant: "",
     background: "#f7f7f7",
     error: "#b00020",
+    white: "white",
     activeBackground: "#f0f0f0",
   },
   border: {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -18,8 +19,8 @@ const SearchForm = styled.form`
   min-width: 300px;
   z-index: 10;
 
-  &:focus {
-    outline: 1px solid ${(props) => props.theme.colors.primary};
+  &.focused {
+    outline: 2px solid ${(props) => props.theme.colors.primary};
   }
 
   @media (max-width: 768px) {
@@ -71,9 +72,19 @@ const SearchBtn = styled.button`
 `;
 
 const SearchBar = () => {
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
+
   return (
-    <SearchForm>
-      <SearchInput placeholder="Something Search" />
+    <SearchForm className={isInputFocused ? "focused" : ""}>
+      <SearchInput placeholder="Something Search" onFocus={handleInputFocus} onBlur={handleInputBlur} />
       <SearchSpan />
       <SearchBtn type="submit">
         <AiOutlineSearch size="25" />
