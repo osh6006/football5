@@ -8,6 +8,7 @@ import Theme from "./styles/theme";
 import "./styles/index.css";
 
 import Root from "./pages/Root";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div>Hello home!</div>,
+        element: <Home />,
       },
       {
         path: "/about",

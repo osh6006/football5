@@ -11,12 +11,12 @@ const BottomBarWrapper = styled.nav`
   position: fixed;
   bottom: 0;
   color: ${(props) => props.theme.colors.primary};
+  z-index: 10;
 
   @media (max-width: 768px) {
     display: flex;
     justify-content: space-around;
     align-items: center;
-
     height: 50px;
     width: 100%;
   }

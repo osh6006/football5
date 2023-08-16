@@ -12,19 +12,23 @@ const SearchForm = styled.form`
   padding: 12px 0;
   margin-top: 1rem;
   border-radius: 92px;
-  transform: translateX(-50%);
+  transform: translateX(-23%);
   background-color: ${(props) => props.theme.colors.activeBackground};
   max-width: 500px;
+  min-width: 300px;
+  z-index: 10;
 
   &:focus {
     outline: 1px solid ${(props) => props.theme.colors.primary};
   }
 
   @media (max-width: 768px) {
-    width: 80%;
+    left: 40%;
   }
 
   @media (max-width: 1280px) {
+    transform: translateX(-40%);
+
     width: 50%;
   }
 `;
