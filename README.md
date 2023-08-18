@@ -71,19 +71,19 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 ## :checkered_flag: Starting
 
 ```bash
-# Clone this project
+# 프로젝트를 복제하세요
 $ git clone https://github.com/osh6006/tsr
 
-# Access
-$ cd tsr
+# 폴더 이동
+$ cd football5
 
-# Install dependencies
-$ yarn
+# dependencies 설치
+$ npm i
 
-# Run the project
-$ yarn start
+# 프로젝트 실행
+$ npm run dev
 
-# The server will initialize in the <http://localhost:3000>
+# 로컬 서버 <http://localhost:5173>로 시작합니다!
 ```
 
 ## :memo: License
@@ -94,4 +94,4 @@ Made with :heart: by <a href="https://github.com/osh6006" target="_blank">ohs600
 
 &#xa0;
 
-<a href="#top">Back to top</a>
+<a href="#top">제일 위로 가기</a>
