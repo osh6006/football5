@@ -1,49 +1,88 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { RouteType } from "../../util/routes";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { lighten } from "polished";
 
 interface BottomBarProps {
   menus: RouteType[];
 }
 
+interface MenuProps {
+  selectColor: string;
+}
+
+interface MenuSvgProps {
+  isBig?: boolean;
+}
 const BottomBarWrapper = styled.nav`
   display: none;
   position: fixed;
   bottom: 0;
   color: ${(props) => props.theme.colors.primary};
   z-index: 10;
-  background: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.secondBackground};
 
   @media (max-width: 768px) {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 50px;
+    height: 100px;
     width: 100%;
   }
 `;
 
-const BottomMenu = styled(NavLink)`
+const BottomMenu = styled(NavLink)<MenuProps>`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4px;
+  font-size: 1.2rem;
+  border: 4px solid transparent;
+  border-radius: ${(props) => props.theme.border.radius};
   cursor: pointer;
+  transition: border 0.1s ease-out, background 0.5s ease-in;
 
   &:active {
-    opacity: 0.7;
+    opacity: 0.5;
   }
 
-  &.active {
-    color: ${(props) => props.theme.colors.primary};
-    font-weight: bold;
-  }
+  ${(props) => {
+    const selected = props.theme.colors[props.selectColor];
+
+    return css`
+      background: ${selected};
+
+      &:hover {
+        border: 4px solid ${selected};
+        background: ${lighten(0.15, selected)};
+      }
+
+      &:active {
+        opacity: 0.5;
+      }
+
+      &.active {
+        font-weight: bold;
+        background-color: ${lighten(0.15, selected)};
+        border: 4px solid ${selected};
+      }
+    `;
+  }}
+`;
+
+const MenuSvg = styled.img<MenuSvgProps>`
+  scale: ${(props) => (props.isBig ? 2.2 : 1.4)};
 `;
 
 const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
-  const { pathname } = useLocation();
-
   return (
     <BottomBarWrapper>
       {menus.map((menu) => (
-        <BottomMenu key={menu.name} to={menu.path}>
-          {pathname === menu.path ? <menu.activeIcon size={35}></menu.activeIcon> : <menu.icon size={35}></menu.icon>}
+        <BottomMenu key={menu.name} to={menu.path} selectColor={menu.color}>
+          <MenuSvg src={menu.svg} isBig={menu.isBig} />
         </BottomMenu>
       ))}
     </BottomBarWrapper>

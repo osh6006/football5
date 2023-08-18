@@ -1,44 +1,41 @@
-import styled from "styled-components";
-import { NavLink, useLocation } from "react-router-dom";
+import styled, { css } from "styled-components";
+import { lighten } from "polished";
+import { NavLink } from "react-router-dom";
+import { RiFootballFill } from "react-icons/ri";
 import { RouteType } from "../../util/routes";
 
 interface SidebarProps {
   menus: RouteType[];
 }
 
+interface MenuProps {
+  selectColor: string;
+}
+
+interface MenuSvgProps {
+  isBig?: boolean;
+}
+
 const SidebarWrapper = styled.aside`
   display: flex;
   flex-direction: column;
-  width: 280px;
-  padding: 20px;
-  border-right: 1px solid #c9c9c9;
+  width: 80px;
+  padding: 1rem;
+  background-color: ${(props) => props.theme.colors.secondBackground};
 
   @media (max-width: 768px) {
     display: none;
   }
-  @media (max-width: 1280px) {
-    width: 100px;
-  }
 `;
 
-const Logo = styled.img`
-  transform: scale(0.8);
-
-  @media (max-width: 1280px) {
-    display: none;
-  }
-`;
-
-const MobileLogo = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: ${(props) => props.theme.colors.primary};
-  text-align: center;
-  margin-bottom: 3rem;
-
-  @media (min-width: 1280px) {
-    display: none;
-  }
+const Logo = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  border: 4px solid transparent;
+  border-radius: ${(props) => props.theme.border.radius};
+  background-color: ${(props) => props.theme.colors.background};
 `;
 
 const Navigation = styled.nav`
@@ -48,52 +45,62 @@ const Navigation = styled.nav`
   gap: 0.5rem;
 `;
 
-const Menu = styled(NavLink)`
+const Menu = styled(NavLink)<MenuProps>`
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 2rem;
+  padding: 8px;
   font-size: 1.2rem;
-  padding: 1rem 2rem;
+  border: 4px solid transparent;
+  border-radius: ${(props) => props.theme.border.radius};
   cursor: pointer;
-  border-radius: 8px;
-  color: ${(props) => props.theme.colors.primary};
-
-  &:hover {
-    background-color: ${(props) => props.theme.colors.activeBackground};
-    transition: background 0.5s ease;
-  }
+  transition: border 0.1s ease-out, background 0.5s ease-in;
 
   &:active {
     opacity: 0.5;
   }
 
-  &.active {
-    font-weight: bold;
-    background-color: ${(props) => props.theme.colors.activeBackground};
-  }
+  ${(props) => {
+    const selected = props.theme.colors[props.selectColor];
 
-  @media (max-width: 1280px) {
-    padding: 1rem 1rem;
-  }
+    return css`
+      background: ${selected};
+
+      &:hover {
+        border: 4px solid ${selected};
+        background: ${lighten(0.15, selected)};
+      }
+
+      &:active {
+        opacity: 0.5;
+      }
+
+      &.active {
+        font-weight: bold;
+        background-color: ${lighten(0.15, selected)};
+        border: 4px solid ${selected};
+      }
+    `;
+  }}
 `;
 
-const MenuName = styled.p`
-  @media (max-width: 1280px) {
-    display: none;
-  }
+const MenuSvg = styled.img<MenuSvgProps>`
+  scale: ${(props) => (props.isBig ? 2.2 : 1.4)};
 `;
 
 const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
-  const { pathname } = useLocation();
   return (
     <SidebarWrapper>
-      <Logo src={"/images/logo.png"} />
-      <MobileLogo>TSR</MobileLogo>
+      <Logo>
+        <RiFootballFill size="24" />
+      </Logo>
       <Navigation>
         {menus?.map((menu) => (
-          <Menu key={menu.name} to={menu.path}>
-            {pathname === menu.path ? <menu.activeIcon size={25} /> : <menu.icon size={25} />}
-            <MenuName>{menu.name}</MenuName>
+          <Menu key={menu.name} to={menu.path} selectColor={menu.color}>
+            {menu.svg && <MenuSvg src={menu.svg} isBig={menu.isBig} />}
           </Menu>
         ))}
       </Navigation>

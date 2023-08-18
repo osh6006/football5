@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const ErrorContainer = styled.div`
   display: flex;
@@ -18,13 +20,23 @@ const ErrorCode = styled.h1`
 const ErrorMessage = styled.p`
   font-size: 1.5rem;
   text-align: center;
+  margin: 0.5rem;
 `;
 
 function Error() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/", { replace: false });
+    }, 5000);
+  }, [navigate]);
+
   return (
     <ErrorContainer>
       <ErrorCode>404</ErrorCode>
-      <ErrorMessage>Oops! The page you are looking for does not exist.</ErrorMessage>
+      <ErrorMessage>이런! 요청하신 페이지를 찾을 수 없습니다.</ErrorMessage>
+      <ErrorMessage>5초 후 메인 페이지로 이동합니다.</ErrorMessage>
     </ErrorContainer>
   );
 }
