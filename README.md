@@ -9,13 +9,13 @@
 <h1 align="center">Football 5</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/osh6006/tsr?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/osh6006/football5?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/osh6006/tsr?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/osh6006/football5?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/osh6006/tsr?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/osh6006/football5?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/osh6006/tsr?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/osh6006/football5?color=56BEB8">
 
   <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/tsr?color=56BEB8" /> -->
 
@@ -46,7 +46,7 @@
 
 ## :dart: About
 
-Describe your project
+세계 축구 5대리그의 모든 것을 알아보세요
 
 ## :sparkles: Features
 
@@ -56,7 +56,7 @@ Describe your project
 
 ## :rocket: Technologies
 
-The following tools were used in this project:
+이 프로젝트에는 다음 도구가 사용되었습니다.
 
 - [Expo](https://expo.io/)
 - [Node.js](https://nodejs.org/en/)
@@ -66,13 +66,13 @@ The following tools were used in this project:
 
 ## :white_check_mark: Requirements
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+시작하기 전에, :checkered_flag: [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) 가 설치되어 있어야 합니다.
 
 ## :checkered_flag: Starting
 
 ```bash
 # 프로젝트를 복제하세요
-$ git clone https://github.com/osh6006/tsr
+$ git clone https://github.com/osh6006/football5.git
 
 # 폴더 이동
 $ cd football5
