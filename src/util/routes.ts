@@ -1,5 +1,6 @@
 import { IconType } from "react-icons";
 import { MdDashboard as activeDashboard, MdOutlineDashboard as dashboard } from "react-icons/md";
+import { TbSortAscendingNumbers as ranking } from "react-icons/tb";
 
 import laligaSvgPath from "/svgs/la-liga.svg";
 import eplSvgPath from "/svgs/premier.svg";
@@ -31,15 +32,15 @@ export interface AllRouteType {
 export const SecondSidebarRoutes: Omit<ChildRouteType, "svg" | "isBig" | "color">[] = [
   {
     name: "Overview",
-    path: "/",
+    path: "/overview",
     activeIcon: activeDashboard,
     icon: dashboard,
   },
   {
     name: "Rank",
     path: "/rank",
-    activeIcon: activeDashboard,
-    icon: dashboard,
+    activeIcon: ranking,
+    icon: ranking,
   },
 ];
 

@@ -19,6 +19,10 @@ interface MenuSvgProps {
 
 const SidebarWrapper = styled.nav`
   display: flex;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `;
 
 const LeagueSidebarWrapper = styled.ul`

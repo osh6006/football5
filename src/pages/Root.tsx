@@ -19,7 +19,7 @@ export default function Root() {
 
   useEffect(() => {
     if (pathname === "/") {
-      navigate("/epl");
+      navigate("/epl/overview");
     }
   }, [navigate, pathname]);
 

@@ -22,6 +22,10 @@ const router = createBrowserRouter([
         element: <Epl />,
         children: [
           {
+            path: "overview",
+            element: <div>Hello OverView</div>,
+          },
+          {
             path: "rank",
             element: <div>Hello Rank</div>,
           },

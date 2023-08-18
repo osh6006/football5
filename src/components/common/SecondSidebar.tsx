@@ -66,10 +66,6 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
   const title = pathname.split("/")[1];
   const subTitle = pathname.split("/")[2] || "";
 
-  console.log(title);
-  console.log(subTitle);
-  console.log(SecondSidebarRoutes[1].path);
-
   return (
     <SecondSidebarWrapper>
       <TitleWrapper>
