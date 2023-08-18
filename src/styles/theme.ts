@@ -22,6 +22,10 @@ const Theme: DefaultTheme = {
     bottom: "1px solid #000000",
   },
   padding: "1.3rem",
+  hover: {
+    duration: ".3s",
+    type: "ease",
+  },
 };
 
 export default Theme;

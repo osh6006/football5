@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 import { lighten } from "polished";
 
 interface BottomBarProps {
-  menus: RouteType[];
+  menus: Omit<RouteType, "icon" | "activeIcon">[];
 }
 
 interface MenuProps {
-  selectColor: string;
+  $selectColor: string;
 }
 
 interface MenuSvgProps {
@@ -50,7 +50,7 @@ const BottomMenu = styled(NavLink)<MenuProps>`
   }
 
   ${(props) => {
-    const selected = props.theme.colors[props.selectColor];
+    const selected = props.theme.colors[props.$selectColor];
 
     return css`
       background: ${selected};
@@ -80,8 +80,8 @@ const MenuSvg = styled.img<MenuSvgProps>`
 const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
   return (
     <BottomBarWrapper>
-      {menus.map((menu) => (
-        <BottomMenu key={menu.name} to={menu.path} selectColor={menu.color}>
+      {menus?.map((menu) => (
+        <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
           <MenuSvg src={menu.svg} isBig={menu.isBig} />
         </BottomMenu>
       ))}

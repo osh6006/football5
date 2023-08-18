@@ -2,37 +2,38 @@ import styled, { css } from "styled-components";
 import { lighten } from "polished";
 import { NavLink } from "react-router-dom";
 import { RiFootballFill } from "react-icons/ri";
-import { RouteType } from "../../util/routes";
+import { AllRouteType } from "../../util/routes";
+import SecondSidebar from "./SecondSidebar";
 
 interface SidebarProps {
-  menus: RouteType[];
+  menus: AllRouteType[];
 }
 
 interface MenuProps {
-  selectColor: string;
+  $selectColor: string;
 }
 
 interface MenuSvgProps {
-  isBig?: boolean;
+  $isBig?: boolean;
 }
 
-const SidebarWrapper = styled.aside`
+const SidebarWrapper = styled.nav`
+  display: flex;
+`;
+
+const LeagueSidebarWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   width: 80px;
   padding: 1rem;
   background-color: ${(props) => props.theme.colors.secondBackground};
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const Logo = styled.div`
   display: flex;
   justify-content: center;
   padding: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   border: 4px solid transparent;
   border-radius: ${(props) => props.theme.border.radius};
   background-color: ${(props) => props.theme.colors.background};
@@ -42,7 +43,7 @@ const Navigation = styled.nav`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.3rem;
 `;
 
 const Menu = styled(NavLink)<MenuProps>`
@@ -51,7 +52,6 @@ const Menu = styled(NavLink)<MenuProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
   padding: 8px;
   font-size: 1.2rem;
   border: 4px solid transparent;
@@ -64,7 +64,7 @@ const Menu = styled(NavLink)<MenuProps>`
   }
 
   ${(props) => {
-    const selected = props.theme.colors[props.selectColor];
+    const selected = props.theme.colors[props.$selectColor];
 
     return css`
       background: ${selected};
@@ -88,22 +88,27 @@ const Menu = styled(NavLink)<MenuProps>`
 `;
 
 const MenuSvg = styled.img<MenuSvgProps>`
-  scale: ${(props) => (props.isBig ? 2.2 : 1.4)};
+  scale: ${(props) => (props.$isBig ? 2.2 : 1.4)};
 `;
 
 const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
   return (
     <SidebarWrapper>
-      <Logo>
-        <RiFootballFill size="24" />
-      </Logo>
-      <Navigation>
-        {menus?.map((menu) => (
-          <Menu key={menu.name} to={menu.path} selectColor={menu.color}>
-            {menu.svg && <MenuSvg src={menu.svg} isBig={menu.isBig} />}
-          </Menu>
-        ))}
-      </Navigation>
+      <LeagueSidebarWrapper>
+        <Logo>
+          <RiFootballFill size="24" />
+        </Logo>
+        <Navigation>
+          {menus?.map((menu) => (
+            <li key={menu.name}>
+              <Menu to={menu.path} $selectColor={menu.color}>
+                {menu.svg && <MenuSvg src={menu.svg} $isBig={menu.$isBig} />}
+              </Menu>
+            </li>
+          ))}
+        </Navigation>
+      </LeagueSidebarWrapper>
+      <SecondSidebar />
     </SidebarWrapper>
   );
 };

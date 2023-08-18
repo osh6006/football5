@@ -1,9 +1,9 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../components/common/Sidebar";
 import styled from "styled-components";
-import { NavRoutes } from "../util/routes";
+import { SidebarRoutes } from "../util/routes";
 import BottomBar from "../components/common/BottomBar";
-import SearchBar from "../components/common/SearchBar";
 
 const RootWrapper = styled.main`
   position: relative;
@@ -14,11 +14,19 @@ const RootWrapper = styled.main`
 `;
 
 export default function Root() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pathname === "/") {
+      navigate("/epl");
+    }
+  }, [navigate, pathname]);
+
   return (
     <RootWrapper>
-      <Sidebar menus={NavRoutes} />
-      <BottomBar menus={NavRoutes} />
-      <SearchBar />
+      <Sidebar menus={SidebarRoutes} />
+      <BottomBar menus={SidebarRoutes} />
       <Outlet />
     </RootWrapper>
   );

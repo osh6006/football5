@@ -8,8 +8,8 @@ import Theme from "./styles/theme";
 import "./styles/index.css";
 
 import Root from "./pages/Root";
-import Home from "./pages/Home";
 import Error from "./pages/Error";
+import Epl from "./pages/Epl";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +18,31 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/",
-        element: <Home />,
+        path: "/epl",
+        element: <Epl />,
+        children: [
+          {
+            path: "rank",
+            element: <div>Hello Rank</div>,
+          },
+        ],
+      },
+
+      {
+        path: "/laliga",
+        element: <div>Hello Epl!</div>,
       },
       {
-        path: "/about",
-        element: <div>Hello about!</div>,
+        path: "/serie",
+        element: <div>Hello Epl!</div>,
+      },
+      {
+        path: "/bundes",
+        element: <div>Hello Epl!</div>,
+      },
+      {
+        path: "/league1",
+        element: <div>Hello Epl!</div>,
       },
     ],
   },
