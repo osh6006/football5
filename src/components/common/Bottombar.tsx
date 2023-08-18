@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
-import { RouteType } from "../../util/routes";
+import { AllRouteType } from "../../util/routes";
 import { NavLink } from "react-router-dom";
 import { lighten } from "polished";
 
 interface BottomBarProps {
-  menus: Omit<RouteType, "icon" | "activeIcon">[];
+  menus: AllRouteType[];
 }
 
 interface MenuProps {
@@ -12,7 +12,7 @@ interface MenuProps {
 }
 
 interface MenuSvgProps {
-  isBig?: boolean;
+  $scale?: number;
 }
 const BottomBarWrapper = styled.nav`
   display: none;
@@ -74,7 +74,7 @@ const BottomMenu = styled(NavLink)<MenuProps>`
 `;
 
 const MenuSvg = styled.img<MenuSvgProps>`
-  scale: ${(props) => (props.isBig ? 2.2 : 1.4)};
+  scale: ${(props) => props.$scale};
 `;
 
 const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
@@ -82,7 +82,7 @@ const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
     <BottomBarWrapper>
       {menus?.map((menu) => (
         <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
-          <MenuSvg src={menu.svg} isBig={menu.isBig} />
+          <MenuSvg src={menu.svg} $scale={menu.$mobileScale} />
         </BottomMenu>
       ))}
     </BottomBarWrapper>

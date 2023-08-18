@@ -14,7 +14,7 @@ interface MenuProps {
 }
 
 interface MenuSvgProps {
-  $isBig?: boolean;
+  $scale?: number;
 }
 
 const SidebarWrapper = styled.nav`
@@ -92,7 +92,7 @@ const Menu = styled(NavLink)<MenuProps>`
 `;
 
 const MenuSvg = styled.img<MenuSvgProps>`
-  scale: ${(props) => (props.$isBig ? 2.2 : 1.4)};
+  scale: ${(props) => props.$scale};
 `;
 
 const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
@@ -106,7 +106,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
           {menus?.map((menu) => (
             <li key={menu.name}>
               <Menu to={menu.path} $selectColor={menu.color}>
-                {menu.svg && <MenuSvg src={menu.svg} $isBig={menu.$isBig} />}
+                {menu.svg && <MenuSvg src={menu.svg} $scale={menu.$scale} />}
               </Menu>
             </li>
           ))}
