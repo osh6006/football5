@@ -78,7 +78,7 @@ const MenuSvg = styled.img<MenuSvgProps>`
   scale: ${(props) => props.$scale};
 `;
 
-const Bottombar: React.FC<BottomBarProps> = ({ menus }) => {
+const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
   return (
     <BottomBarWrapper>
       {menus?.map((menu) => (
@@ -90,4 +90,4 @@ const Bottombar: React.FC<BottomBarProps> = ({ menus }) => {
   );
 };
 
-export default Bottombar;
+export default BottomBar;
