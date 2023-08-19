@@ -6,14 +6,14 @@ export default function Epl() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (pathname === "/epl") {
+    if (pathname && pathname === "/epl") {
       navigate("/epl/overview");
     }
   }, [navigate, pathname]);
 
   return (
-    <div>
+    <section>
       <Outlet />
-    </div>
+    </section>
   );
 }
