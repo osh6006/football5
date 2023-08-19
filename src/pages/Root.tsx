@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import Sidebar from "../components/common/Sidebar";
+
 import styled from "styled-components";
+
 import { SidebarRoutes } from "../util/routes";
+import Sidebar from "../components/common/Sidebar";
 import BottomBar from "../components/common/BottomBar";
 
 const RootWrapper = styled.main`

@@ -1,21 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/globalStyle";
 import Theme from "./styles/theme";
 import "./styles/index.css";
 
+import Epl from "./pages/Epl";
 import Root from "./pages/Root";
 import Error from "./pages/Error";
-import Epl from "./pages/Epl";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <Error />,
+
     children: [
       {
         path: "/epl",
