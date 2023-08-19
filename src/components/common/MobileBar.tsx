@@ -3,7 +3,7 @@ import { AllRouteType } from "../../util/routes";
 import { NavLink } from "react-router-dom";
 import { lighten } from "polished";
 
-interface BottomBarProps {
+interface MobileBarProps {
   menus: AllRouteType[];
 }
 
@@ -78,7 +78,7 @@ const MenuSvg = styled.img<MenuSvgProps>`
   scale: ${(props) => props.$scale};
 `;
 
-const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
+const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
   return (
     <BottomBarWrapper>
       {menus?.map((menu) => (
@@ -90,4 +90,4 @@ const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
   );
 };
 
-export default BottomBar;
+export default MobileBar;

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { SidebarRoutes } from "../util/routes";
 import Sidebar from "../components/common/Sidebar";
-import BottomBar from "../components/common/BottomBar";
+import MobileBar from "../components/common/MobileBar";
 
 const RootWrapper = styled.main`
   position: relative;
@@ -28,7 +28,7 @@ export default function Root() {
   return (
     <RootWrapper>
       <Sidebar menus={SidebarRoutes} />
-      <BottomBar menus={SidebarRoutes} />
+      <MobileBar menus={SidebarRoutes} />
       <Outlet />
     </RootWrapper>
   );
