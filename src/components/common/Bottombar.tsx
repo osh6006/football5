@@ -14,6 +14,7 @@ interface MenuProps {
 interface MenuSvgProps {
   $scale?: number;
 }
+
 const BottomBarWrapper = styled.nav`
   display: none;
   position: fixed;
@@ -77,7 +78,7 @@ const MenuSvg = styled.img<MenuSvgProps>`
   scale: ${(props) => props.$scale};
 `;
 
-export const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
+const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
   return (
     <BottomBarWrapper>
       {menus?.map((menu) => (
@@ -88,3 +89,5 @@ export const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
     </BottomBarWrapper>
   );
 };
+
+export default BottomBar;

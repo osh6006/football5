@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { SidebarRoutes } from "../util/routes";
 import Sidebar from "../components/common/Sidebar";
-import { BottomBar } from "../components/common/BottomBar";
+import BottomBar from "../components/common/BottomBar";
 
 const RootWrapper = styled.main`
   position: relative;
