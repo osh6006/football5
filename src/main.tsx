@@ -16,7 +16,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     errorElement: <Error />,
-
     children: [
       {
         path: "/epl",
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
           },
         ],
       },
-
       {
         path: "/laliga",
         element: <div>Hello Epl!</div>,
