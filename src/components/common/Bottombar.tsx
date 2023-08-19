@@ -82,7 +82,7 @@ const BottomBar: React.FC<BottomBarProps> = ({ menus }) => {
     <BottomBarWrapper>
       {menus?.map((menu) => (
         <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
-          <MenuSvg src={menu.svg} $scale={menu.$mobileScale} />
+          <MenuSvg alt="League Logo" src={menu.svg} $scale={menu.$mobileScale} />
         </BottomMenu>
       ))}
     </BottomBarWrapper>

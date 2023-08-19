@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Tsr" />
+  <img src="./.github/app.gif" alt="Football 5" />
 
 &#xa0;
 
@@ -83,7 +83,7 @@ $ npm i
 # 프로젝트 실행
 $ npm run dev
 
-# 로컬 서버 <http://localhost:5173>로 시작합니다!
+# 로컬 서버 <http://localhost:5173>으로 시작합니다!
 ```
 
 ## :memo: License

@@ -1,8 +1,9 @@
-import styled, { css } from "styled-components";
-import { lighten } from "polished";
 import { NavLink } from "react-router-dom";
-import { RiFootballFill } from "react-icons/ri";
 import { AllRouteType } from "../../util/routes";
+
+import { lighten } from "polished";
+import styled, { css } from "styled-components";
+import { RiFootballFill } from "@react-icons/all-files/ri/RiFootballFill";
 import SecondSidebar from "./SecondSidebar";
 
 interface SidebarProps {
@@ -106,7 +107,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
           {menus?.map((menu) => (
             <li key={menu.name}>
               <Menu to={menu.path} $selectColor={menu.color}>
-                {menu.svg && <MenuSvg src={menu.svg} $scale={menu.$scale} />}
+                {menu.svg && <MenuSvg alt="league Logo" src={menu.svg} $scale={menu.$scale} />}
               </Menu>
             </li>
           ))}

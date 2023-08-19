@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
 
 const SearchForm = styled.form`
   width: 40%;

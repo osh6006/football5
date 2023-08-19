@@ -1,6 +1,7 @@
 import { IconType } from "react-icons";
-import { MdDashboard as activeDashboard, MdOutlineDashboard as dashboard } from "react-icons/md";
-import { TbSortAscendingNumbers as ranking } from "react-icons/tb";
+import { RiDashboardFill as activeDashboard } from "@react-icons/all-files/ri/RiDashboardFill";
+import { RiDashboardLine as dashboard } from "@react-icons/all-files/ri/RiDashboardLine";
+import { ImSortNumericAsc as ranking } from "@react-icons/all-files/im/ImSortNumericAsc";
 
 import laligaSvgPath from "/svgs/la-liga.svg";
 import eplSvgPath from "/svgs/premier.svg";

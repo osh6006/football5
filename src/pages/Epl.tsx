@@ -13,7 +13,6 @@ export default function Epl() {
 
   return (
     <div>
-      EPL
       <Outlet />
     </div>
   );
