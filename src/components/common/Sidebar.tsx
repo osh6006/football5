@@ -51,6 +51,8 @@ const Navigation = styled.nav`
   gap: 1.3rem;
 `;
 
+const MenuWrapper = styled.ul``;
+
 const Menu = styled(NavLink)<MenuProps>`
   width: 48px;
   height: 48px;
@@ -104,14 +106,16 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
           <RiFootballFill size="24" />
         </Logo>
         <Navigation>
-          {menus &&
-            menus?.map((menu) => (
-              <li key={menu.name}>
-                <Menu to={menu.path} $selectColor={menu.color}>
-                  {menu.svg && <MenuSvg alt="league Logo" src={menu.svg} $scale={menu.$scale} />}
-                </Menu>
-              </li>
-            ))}
+          <MenuWrapper>
+            {menus &&
+              menus?.map((menu) => (
+                <li key={menu.name}>
+                  <Menu to={menu.path} $selectColor={menu.color}>
+                    {menu.svg && <MenuSvg alt="league Logo" src={menu.svg} $scale={menu.$scale} />}
+                  </Menu>
+                </li>
+              ))}
+          </MenuWrapper>
         </Navigation>
       </LeagueSidebarWrapper>
       <SecondSidebar />
