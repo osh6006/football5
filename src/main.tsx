@@ -9,6 +9,7 @@ import "./styles/index.css";
 import Epl from "./pages/Epl";
 import Root from "./pages/Root";
 import Error from "./pages/Error";
+import OverView from "./pages/OverView";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "overview",
-            element: <div>Hello OverView</div>,
+            element: <OverView />,
           },
           {
             path: "rank",
