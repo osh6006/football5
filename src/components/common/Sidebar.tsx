@@ -104,13 +104,14 @@ const Sidebar: React.FC<SidebarProps> = ({ menus }) => {
           <RiFootballFill size="24" />
         </Logo>
         <Navigation>
-          {menus?.map((menu) => (
-            <li key={menu.name}>
-              <Menu to={menu.path} $selectColor={menu.color}>
-                {menu.svg && <MenuSvg alt="league Logo" src={menu.svg} $scale={menu.$scale} />}
-              </Menu>
-            </li>
-          ))}
+          {menus &&
+            menus?.map((menu) => (
+              <li key={menu.name}>
+                <Menu to={menu.path} $selectColor={menu.color}>
+                  {menu.svg && <MenuSvg alt="league Logo" src={menu.svg} $scale={menu.$scale} />}
+                </Menu>
+              </li>
+            ))}
         </Navigation>
       </LeagueSidebarWrapper>
       <SecondSidebar />

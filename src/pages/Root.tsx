@@ -27,8 +27,8 @@ export default function Root() {
 
   return (
     <RootWrapper>
-      <Sidebar menus={SidebarRoutes} />
-      <MobileBar menus={SidebarRoutes} />
+      <Sidebar menus={SidebarRoutes && SidebarRoutes} />
+      <MobileBar menus={SidebarRoutes && SidebarRoutes} />
       <Outlet />
     </RootWrapper>
   );

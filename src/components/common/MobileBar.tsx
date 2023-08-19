@@ -81,11 +81,12 @@ const MenuSvg = styled.img<MenuSvgProps>`
 const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
   return (
     <BottomBarWrapper>
-      {menus?.map((menu) => (
-        <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
-          <MenuSvg alt="League Logo" src={menu.svg} $scale={menu.$mobileScale} />
-        </BottomMenu>
-      ))}
+      {menus &&
+        menus?.map((menu) => (
+          <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
+            <MenuSvg alt="League Logo" src={menu.svg} $scale={menu.$mobileScale} />
+          </BottomMenu>
+        ))}
     </BottomBarWrapper>
   );
 };
