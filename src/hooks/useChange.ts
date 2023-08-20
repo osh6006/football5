@@ -11,7 +11,7 @@ export default function useChange(league: string) {
   useEffect(() => {
     if (pathname && pathname === `/${league}`) {
       // 리덕스에서 현재 리그에 대한 정보를 바꿔준다.
-      dispatch(changeLeague(pathname));
+      dispatch(changeLeague(league));
       navigate(`/${league}/overview`);
     }
   }, [navigate, pathname, dispatch, league]);
