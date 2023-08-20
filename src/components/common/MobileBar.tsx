@@ -23,7 +23,7 @@ const BottomBarWrapper = styled.nav`
   z-index: 10;
   background-color: ${(props) => props.theme.colors.secondBackground};
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     display: flex;
     justify-content: space-around;
     align-items: center;

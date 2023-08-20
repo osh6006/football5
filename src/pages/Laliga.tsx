@@ -2,16 +2,16 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import useChange from "../hooks/useChange";
 
-const EplWrapper = styled.section`
+const LaligaWrapper = styled.section`
   flex: 1;
 `;
 
-export default function Epl() {
-  useChange("epl");
+export default function Laliga() {
+  useChange("laliga");
 
   return (
-    <EplWrapper>
+    <LaligaWrapper>
       <Outlet />
-    </EplWrapper>
+    </LaligaWrapper>
   );
 }

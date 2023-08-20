@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/globalStyle";
 import Theme from "./styles/theme";
@@ -10,7 +11,11 @@ import Epl from "./pages/Epl";
 import Root from "./pages/Root";
 import Error from "./pages/Error";
 import OverView from "./pages/OverView";
+import { store } from "./store";
+import { Provider } from "react-redux";
+import Laliga from "./pages/Laliga";
 
+// react-router!
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,7 +38,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/laliga",
-        element: <div>Hello Epl!</div>,
+        element: <Laliga />,
+        children: [
+          {
+            path: "overview",
+            element: <OverView />,
+          },
+          {
+            path: "rank",
+            element: <div>Hello Rank</div>,
+          },
+        ],
       },
       {
         path: "/serie",
@@ -53,9 +68,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider theme={Theme && Theme}>
-      <GlobalStyle />
-      <RouterProvider router={router && router} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={Theme && Theme}>
+        <GlobalStyle />
+        <RouterProvider router={router && router} />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );

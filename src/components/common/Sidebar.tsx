@@ -51,7 +51,11 @@ const Navigation = styled.nav`
   gap: 1.3rem;
 `;
 
-const MenuWrapper = styled.ul``;
+const MenuWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+`;
 
 const Menu = styled(NavLink)<MenuProps>`
   width: 48px;

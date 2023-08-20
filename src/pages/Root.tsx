@@ -10,6 +10,7 @@ import MobileBar from "../components/common/MobileBar";
 const RootWrapper = styled.main`
   position: relative;
   display: flex;
+  width: 100vw;
   height: 100vh;
   background: ${(props) => props.theme.colors.background};
   color: ${(props) => props.theme.colors.white};
