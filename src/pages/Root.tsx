@@ -11,7 +11,7 @@ import { RootState } from "../store";
 import { darken, rgba } from "polished";
 
 interface RootWrapperProps {
-  $leagueColor: string;
+  $leagueColor?: string;
 }
 
 const RootWrapper = styled.main<RootWrapperProps>`
@@ -23,8 +23,8 @@ const RootWrapper = styled.main<RootWrapperProps>`
   transition: background 0.5s ease;
 
   ${(props) => {
-    const selected = props.theme.colors[props.$leagueColor];
-    const background = rgba(selected, 0.9);
+    const selectedColor = props.$leagueColor || "#ffffff";
+    const background = rgba(selectedColor, 0.9);
 
     return css`
       background-color: ${darken(0.18, background)};
@@ -36,6 +36,7 @@ export default function Root() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const selectedLeague = useSelector((state: RootState) => state.league.selectedLeague);
+  const colorObj = SidebarRoutes.find((el) => el.id.toString() === selectedLeague);
 
   useEffect(() => {
     if (pathname === "/") {
@@ -44,7 +45,7 @@ export default function Root() {
   }, [navigate, pathname]);
 
   return (
-    <RootWrapper $leagueColor={selectedLeague}>
+    <RootWrapper $leagueColor={colorObj?.color}>
       <Sidebar menus={SidebarRoutes && SidebarRoutes} />
       <MobileBar menus={SidebarRoutes && SidebarRoutes} />
       <Outlet />

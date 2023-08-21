@@ -12,7 +12,7 @@ const Theme: DefaultTheme = {
     background: "#212121",
     secondBackground: "#424242",
 
-    epl: "#44066A",
+    39: "#44066A",
     serie: "#1DA5AD",
     laliga: "#7c561d",
     bundes: "#DC2939",

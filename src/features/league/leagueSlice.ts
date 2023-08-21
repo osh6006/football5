@@ -5,7 +5,7 @@ export interface LeagueState {
 }
 
 const initialState: LeagueState = {
-  selectedLeague: "epl",
+  selectedLeague: "39",
 };
 
 export const leagueSlice = createSlice({

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { SecondSidebarRoutes } from "../../util/routeData";
 import { rgba, lighten } from "polished";
 import Title from "./Title";
@@ -54,10 +54,11 @@ const Menu = styled(NavLink)<MenuProps>`
 
 const SecondSidebar: React.FC<SecondSidebarProps> = () => {
   const { pathname } = useLocation();
+  const param = useParams();
+
   const title = pathname.split("/")[1];
   const subTitle = pathname.split("/")[2] || "";
-
-  console.log(title);
+  const leagueId = param.leagueId;
 
   return (
     <SecondSidebarWrapper>
@@ -70,7 +71,7 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
         {title &&
           SecondSidebarRoutes?.map((item) => (
             <li key={item.name}>
-              <Menu to={`/${title}${item.path}`} $selectColor={title}>
+              <Menu to={`/${title}/${leagueId}${item.path}`} $selectColor={title}>
                 {subTitle && `/${subTitle}` === item.path ? <item.activeIcon size={26} /> : <item.icon size={26} />}
                 {item.name}
               </Menu>

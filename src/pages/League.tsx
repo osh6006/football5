@@ -12,7 +12,7 @@ const League = () => {
   console.log(useLocation());
   console.log(useParams());
 
-  useChange("epl");
+  useChange();
   return (
     <LeagueWrapper>
       <Outlet />

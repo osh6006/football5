@@ -76,7 +76,7 @@ const Menu = styled(NavLink)<MenuProps>`
   }
 
   ${(props) => {
-    const selected = props.theme.colors[props.$selectColor];
+    const selected = props.$selectColor;
 
     return css`
       background: ${selected};

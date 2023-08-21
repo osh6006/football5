@@ -1,18 +1,23 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { changeLeague } from "../features/league/leagueSlice";
 
-export default function useChange(league: string) {
+export default function useChange() {
   const { pathname } = useLocation();
+  const params = useParams();
+
+  const leagueId = params.leagueId;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  console.log(leagueId);
+
   useEffect(() => {
-    if (pathname && pathname === `/${league}`) {
-      // 리덕스에서 현재 리그에 대한 정보를 바꿔준다.
-      dispatch(changeLeague(league));
-      navigate(`/${league}/overview`);
+    // 리덕스에서 현재 리그에 대한 정보를 바꿔준다.
+    if (leagueId) {
+      dispatch(changeLeague(leagueId));
+      navigate(`/league/${leagueId}/overview`);
     }
-  }, [navigate, pathname, dispatch, league]);
+  }, [navigate, pathname, dispatch, leagueId]);
 }
