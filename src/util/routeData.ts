@@ -10,6 +10,7 @@ import bundesSvgPath from "/svgs/bundes.svg";
 import league1SvgPath from "/svgs/league1.svg";
 
 export interface AllRouteType {
+  id: number;
   name: string;
   path: string;
   svg: string;
@@ -23,7 +24,7 @@ export interface ChildRouteType extends AllRouteType {
   activeIcon: IconType;
 }
 
-export const SecondSidebarRoutes: Omit<ChildRouteType, "svg" | "$scale" | "color" | "$mobileScale">[] = [
+export const SecondSidebarRoutes: Omit<ChildRouteType, "svg" | "$scale" | "color" | "$mobileScale" | "id">[] = [
   {
     name: "Overview",
     path: "/overview",
@@ -40,60 +41,48 @@ export const SecondSidebarRoutes: Omit<ChildRouteType, "svg" | "$scale" | "color
 
 export const SidebarRoutes: AllRouteType[] = [
   {
+    id: 39,
     name: "epl",
-    path: "/epl",
+    path: "/league/39",
     color: "epl",
     svg: eplSvgPath,
     $scale: 1.5,
     $mobileScale: 1,
   },
   {
+    id: 140,
     name: "laliga",
-    path: "/laliga",
+    path: "/league/140",
     svg: laligaSvgPath,
     color: "laliga",
     $scale: 1.5,
     $mobileScale: 1,
   },
   {
+    id: 135,
     name: "serie",
-    path: "/serie",
+    path: "/league/135",
     color: "serie",
     svg: serieSvgPath,
     $scale: 2.3,
     $mobileScale: 1.8,
   },
   {
+    id: 78,
     name: "bundes",
-    path: "/bundes",
+    path: "/league/78",
     color: "bundes",
     svg: bundesSvgPath,
     $scale: 1.5,
     $mobileScale: 2,
   },
   {
+    id: 61,
     name: "league1",
-    path: "/league1",
+    path: "/league/61",
     color: "league1",
     svg: league1SvgPath,
     $scale: 1.5,
     $mobileScale: 2,
   },
 ];
-
-// export function getSecondSidebarRoutes(league: string): Omit<ChildRouteType, "svg" | "isBig" | "color">[] {
-//   return [
-//     {
-//       name: "Overview",
-//       path: "",
-//       activeIcon: activeDashboard,
-//       icon: dashboard,
-//     },
-//     {
-//       name: "Rank",
-//       path: "rank",
-//       activeIcon: activeDashboard,
-//       icon: dashboard,
-//     },
-//   ];
-// }

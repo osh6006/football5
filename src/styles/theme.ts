@@ -2,20 +2,21 @@ import { DefaultTheme } from "styled-components";
 
 const Theme: DefaultTheme = {
   colors: {
-    primary: "#FF5757",
-    primaryVariant: "#FF3C3C",
+    primary: "",
+    primaryVariant: "",
     secondary: "",
     secondaryVariant: "",
+    white: "white",
+    gray: "#AFAFAF",
+    error: "#b00020",
     background: "#212121",
     secondBackground: "#424242",
-    epl: "#240949",
-    serie: "#2A444B",
-    laliga: "#C79816",
-    bundes: "#AA3323",
+
+    epl: "#44066A",
+    serie: "#1DA5AD",
+    laliga: "#7c561d",
+    bundes: "#DC2939",
     league1: "#0A5C15",
-    error: "#b00020",
-    white: "white",
-    activeBackground: "#f0f0f0",
   },
   border: {
     radius: "10px",

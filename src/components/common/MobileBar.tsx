@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { AllRouteType } from "../../util/routes";
+import { AllRouteType } from "../../util/routeData";
 import { NavLink } from "react-router-dom";
 import { lighten } from "polished";
 
@@ -57,8 +57,8 @@ const BottomMenu = styled(NavLink)<MenuProps>`
       background: ${selected};
 
       &:hover {
-        border: 4px solid ${selected};
-        background: ${lighten(0.15, selected)};
+        border: 4px solid ${selected || "#ffffff"};
+        background: ${lighten(0.15, selected || "#ffffff")};
       }
 
       &:active {
@@ -67,7 +67,7 @@ const BottomMenu = styled(NavLink)<MenuProps>`
 
       &.active {
         font-weight: bold;
-        background-color: ${lighten(0.15, selected)};
+        background-color: ${lighten(0.15, selected || "#ffffff")};
         border: 4px solid ${selected};
       }
     `;

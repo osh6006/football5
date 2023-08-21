@@ -1,33 +1,50 @@
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import { SidebarRoutes } from "../util/routes";
+import { SidebarRoutes } from "../util/routeData";
 import Sidebar from "../components/common/Sidebar";
 import MobileBar from "../components/common/MobileBar";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import { darken, rgba } from "polished";
 
-const RootWrapper = styled.main`
+interface RootWrapperProps {
+  $leagueColor: string;
+}
+
+const RootWrapper = styled.main<RootWrapperProps>`
   position: relative;
   display: flex;
   width: 100vw;
-  height: 100vh;
-  background: ${(props) => props.theme.colors.background};
   color: ${(props) => props.theme.colors.white};
+  overflow: hidden;
+  transition: background 0.5s ease;
+
+  ${(props) => {
+    const selected = props.theme.colors[props.$leagueColor];
+    const background = rgba(selected, 0.9);
+
+    return css`
+      background-color: ${darken(0.18, background)};
+    `;
+  }}
 `;
 
 export default function Root() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const selectedLeague = useSelector((state: RootState) => state.league.selectedLeague);
 
   useEffect(() => {
     if (pathname === "/") {
-      navigate("/epl/overview");
+      navigate("/league/39");
     }
   }, [navigate, pathname]);
 
   return (
-    <RootWrapper>
+    <RootWrapper $leagueColor={selectedLeague}>
       <Sidebar menus={SidebarRoutes && SidebarRoutes} />
       <MobileBar menus={SidebarRoutes && SidebarRoutes} />
       <Outlet />

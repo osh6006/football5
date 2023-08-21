@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
-import { SecondSidebarRoutes } from "../../util/routes";
+import { SecondSidebarRoutes } from "../../util/routeData";
 import { rgba, lighten } from "polished";
+import Title from "./Title";
+import SubTitle from "./SubTitle";
 
 interface SecondSidebarProps {}
 
@@ -19,17 +21,6 @@ const TitleWrapper = styled.div`
   padding: 1rem 2rem;
 `;
 
-const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-`;
-
-const SubTitle = styled.p`
-  margin-top: 1rem;
-  text-transform: uppercase;
-`;
-
 const MenuWrapper = styled.ul`
   margin-top: 0.4rem;
 `;
@@ -44,7 +35,7 @@ const Menu = styled(NavLink)<MenuProps>`
 
   ${(props) => {
     const selected = props.theme.colors[props.$selectColor];
-    const lightSelected = rgba(lighten(0.55, selected), 0.2);
+    const lightSelected = rgba(lighten(0.55, selected || "#ffffff"), 0.2);
 
     return css`
       &:hover {
@@ -55,7 +46,7 @@ const Menu = styled(NavLink)<MenuProps>`
         font-weight: bold;
         background-color: ${lightSelected};
         opacity: 0.9;
-        border-left: 6px solid ${lighten(0.2, selected)};
+        border-left: 6px solid ${lighten(0.2, selected || "#ffffff")};
       }
     `;
   }}
@@ -66,11 +57,13 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
   const title = pathname.split("/")[1];
   const subTitle = pathname.split("/")[2] || "";
 
+  console.log(title);
+
   return (
     <SecondSidebarWrapper>
       <TitleWrapper>
-        <Title>{title}</Title>
-        <SubTitle>{`${title}에 대한 모든 것.`}</SubTitle>
+        <Title title={title && title} />
+        <SubTitle subtitle={title && `${title}에 대한 모든 것.`} />
       </TitleWrapper>
 
       <MenuWrapper>

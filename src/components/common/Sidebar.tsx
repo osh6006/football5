@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { AllRouteType } from "../../util/routes";
+import { AllRouteType } from "../../util/routeData";
 
 import { lighten } from "polished";
 import styled, { css } from "styled-components";
@@ -20,6 +20,7 @@ interface MenuSvgProps {
 
 const SidebarWrapper = styled.nav`
   display: flex;
+  background-color: ${(props) => props.theme.colors.background};
 
   @media (max-width: 640px) {
     display: none;
@@ -82,7 +83,7 @@ const Menu = styled(NavLink)<MenuProps>`
 
       &:hover {
         border: 4px solid ${selected};
-        background: ${lighten(0.15, selected)};
+        background: ${lighten(0.15, selected || "#ffffff")};
       }
 
       &:active {
@@ -91,7 +92,7 @@ const Menu = styled(NavLink)<MenuProps>`
 
       &.active {
         font-weight: bold;
-        background-color: ${lighten(0.15, selected)};
+        background-color: ${lighten(0.15, selected || "#ffffff")};
         border: 4px solid ${selected};
       }
     `;

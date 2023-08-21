@@ -26,11 +26,11 @@ const ErrorMessage = styled.p`
 function Error() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setTimeout(() => {
-      navigate("/", { replace: false });
-    }, 5000);
-  }, [navigate]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigate("/", { replace: false });
+  //   }, 5000);
+  // }, [navigate]);
 
   return (
     <ErrorContainer>
