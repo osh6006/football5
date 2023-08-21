@@ -11,11 +11,9 @@ export default function useChange() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(leagueId);
-
   useEffect(() => {
     // 리덕스에서 현재 리그에 대한 정보를 바꿔준다.
-    if (leagueId) {
+    if (leagueId && !pathname.split("/")[3]) {
       dispatch(changeLeague(leagueId));
       navigate(`/league/${leagueId}/overview`);
     }

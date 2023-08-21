@@ -76,14 +76,14 @@ const Menu = styled(NavLink)<MenuProps>`
   }
 
   ${(props) => {
-    const selected = props.$selectColor;
+    const selected = props.$selectColor || "#ffffff";
 
     return css`
       background: ${selected};
 
       &:hover {
         border: 4px solid ${selected};
-        background: ${lighten(0.15, selected || "#ffffff")};
+        background: ${lighten(0.15, selected)};
       }
 
       &:active {
@@ -92,7 +92,7 @@ const Menu = styled(NavLink)<MenuProps>`
 
       &.active {
         font-weight: bold;
-        background-color: ${lighten(0.15, selected || "#ffffff")};
+        background-color: ${lighten(0.15, selected)};
         border: 4px solid ${selected};
       }
     `;

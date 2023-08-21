@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { NavLink, useLocation, useParams } from "react-router-dom";
-import { SecondSidebarRoutes } from "../../util/routeData";
+import { SecondSidebarRoutes, SidebarRoutes } from "../../util/routeData";
 import { rgba, lighten } from "polished";
 import Title from "./Title";
 import SubTitle from "./SubTitle";
@@ -8,7 +8,7 @@ import SubTitle from "./SubTitle";
 interface SecondSidebarProps {}
 
 interface MenuProps {
-  $selectColor: string;
+  $selectColor?: string;
 }
 
 const SecondSidebarWrapper = styled.nav`
@@ -34,8 +34,8 @@ const Menu = styled(NavLink)<MenuProps>`
   transition: all ${(props) => props.theme.hover.duration} ${(props) => props.theme.hover.type};
 
   ${(props) => {
-    const selected = props.theme.colors[props.$selectColor];
-    const lightSelected = rgba(lighten(0.55, selected || "#ffffff"), 0.2);
+    const selectedColor = props.$selectColor || "#ffffff";
+    const lightSelected = rgba(lighten(0.55, selectedColor), 0.2);
 
     return css`
       &:hover {
@@ -46,7 +46,7 @@ const Menu = styled(NavLink)<MenuProps>`
         font-weight: bold;
         background-color: ${lightSelected};
         opacity: 0.9;
-        border-left: 6px solid ${lighten(0.2, selected || "#ffffff")};
+        border-left: 6px solid ${lighten(0.2, selectedColor)};
       }
     `;
   }}
@@ -59,24 +59,24 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
   const title = pathname.split("/")[1];
   const subTitle = pathname.split("/")[2] || "";
   const leagueId = param.leagueId;
+  const colorObj = SidebarRoutes.find((el) => el.id.toString() === leagueId);
 
   return (
     <SecondSidebarWrapper>
       <TitleWrapper>
-        <Title title={title && title} />
-        <SubTitle subtitle={title && `${title}에 대한 모든 것.`} />
+        <Title title={title} />
+        <SubTitle subtitle={`${title}에 대한 모든 것.`} />
       </TitleWrapper>
 
       <MenuWrapper>
-        {title &&
-          SecondSidebarRoutes?.map((item) => (
-            <li key={item.name}>
-              <Menu to={`/${title}/${leagueId}${item.path}`} $selectColor={title}>
-                {subTitle && `/${subTitle}` === item.path ? <item.activeIcon size={26} /> : <item.icon size={26} />}
-                {item.name}
-              </Menu>
-            </li>
-          ))}
+        {SecondSidebarRoutes?.map((item) => (
+          <li key={item.name}>
+            <Menu to={`/${title}/${leagueId}${item.path}`} $selectColor={colorObj?.color}>
+              {`/${subTitle}` === item.path ? <item.activeIcon size={26} /> : <item.icon size={26} />}
+              {item.name}
+            </Menu>
+          </li>
+        ))}
       </MenuWrapper>
     </SecondSidebarWrapper>
   );

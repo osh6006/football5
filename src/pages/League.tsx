@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import useChange from "../hooks/useChange";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const LeagueWrapper = styled.section`
   flex: 1;
@@ -9,9 +9,6 @@ const LeagueWrapper = styled.section`
 `;
 
 const League = () => {
-  console.log(useLocation());
-  console.log(useParams());
-
   useChange();
   return (
     <LeagueWrapper>
