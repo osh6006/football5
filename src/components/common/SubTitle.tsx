@@ -7,7 +7,7 @@ interface SubTitleProps {
 const StyledSubtitle = styled.p`
   color: ${(props) => props.theme.colors.gray};
   margin-top: 0.5rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
 `;
 
 const SubTitle: React.FC<SubTitleProps> = ({ subtitle }) => {

@@ -57,22 +57,22 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
   const param = useParams();
 
   const title = pathname.split("/")[1];
-  const subTitle = pathname.split("/")[2] || "";
+  const subTitle = pathname.split("/")[3] || "";
   const leagueId = param.leagueId;
   const colorObj = SidebarRoutes.find((el) => el.id.toString() === leagueId);
 
   return (
     <SecondSidebarWrapper>
       <TitleWrapper>
-        <Title title={title} />
-        <SubTitle subtitle={`${title}에 대한 모든 것.`} />
+        <Title title={"Foot ball 5"} />
+        <SubTitle subtitle={`Foot ball에 대한 모든 것.`} />
       </TitleWrapper>
 
       <MenuWrapper>
         {SecondSidebarRoutes?.map((item) => (
           <li key={item.name}>
             <Menu to={`/${title}/${leagueId}${item.path}`} $selectColor={colorObj?.color}>
-              {`/${subTitle}` === item.path ? <item.activeIcon size={26} /> : <item.icon size={26} />}
+              {subTitle ? <item.activeIcon size={26} /> : <item.icon size={26} />}
               {item.name}
             </Menu>
           </li>

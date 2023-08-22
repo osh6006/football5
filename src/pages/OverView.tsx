@@ -19,7 +19,6 @@ const OverViewWrapper = styled.div`
 
 const LeftSideWrapper = styled.div`
   flex: 1;
-  background-color: aquamarine;
 `;
 
 const RightSideWrapper = styled.div`

@@ -22,7 +22,7 @@ const SidebarWrapper = styled.nav`
   display: flex;
   background-color: ${(props) => props.theme.colors.background};
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

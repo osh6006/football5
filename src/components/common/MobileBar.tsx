@@ -23,11 +23,11 @@ const BottomBarWrapper = styled.nav`
   z-index: 10;
   background-color: ${(props) => props.theme.colors.secondBackground};
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100px;
+    height: 80px;
     width: 100%;
   }
 `;
@@ -51,14 +51,14 @@ const BottomMenu = styled(NavLink)<MenuProps>`
   }
 
   ${(props) => {
-    const selected = props.theme.colors[props.$selectColor];
+    const selectedColor = props.$selectColor || "#ffffff";
 
     return css`
-      background: ${selected};
+      background: ${selectedColor};
 
       &:hover {
-        border: 4px solid ${selected || "#ffffff"};
-        background: ${lighten(0.15, selected || "#ffffff")};
+        border: 4px solid ${selectedColor};
+        background: ${lighten(0.15, selectedColor)};
       }
 
       &:active {
@@ -67,8 +67,8 @@ const BottomMenu = styled(NavLink)<MenuProps>`
 
       &.active {
         font-weight: bold;
-        background-color: ${lighten(0.15, selected || "#ffffff")};
-        border: 4px solid ${selected};
+        background-color: ${lighten(0.15, selectedColor)};
+        border: 4px solid ${selectedColor};
       }
     `;
   }}
