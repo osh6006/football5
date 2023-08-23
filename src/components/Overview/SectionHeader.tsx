@@ -12,6 +12,10 @@ const SectionHeaderWrapper = styled.div`
   justify-content: space-between;
 `;
 
+const SectionTitle = styled.h2`
+  font-size: 1.5rem;
+`;
+
 const LinkWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -22,7 +26,7 @@ const ViewAllLink = styled(Link)``;
 const SectionHeader: React.FC<SectionHeaderProps> = ({ title, src }) => {
   return (
     <SectionHeaderWrapper>
-      <h2>{title}</h2>
+      <SectionTitle>{title}</SectionTitle>
       <LinkWrapper>
         <ViewAllLink to={src}>모두 보기</ViewAllLink>
         <AiOutlineRight />

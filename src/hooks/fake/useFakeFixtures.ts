@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTwoNextMatches } from "../../api/fakeFootballAPI";
+import { getOneLatestMatches, getTwoNextMatches } from "../../api/fakeFootballAPI";
 import { Match } from "../../type/fixtures";
 
 export default function useFakeFixtures() {
   // const queryClient = useQueryClient();
 
   const fakeNextMatchesQuery = useQuery({
-    queryKey: ["bannerLatestMatch"],
+    queryKey: ["FakeBannerNextMatch"],
     queryFn: () => getTwoNextMatches(),
     staleTime: 1000 * 60,
     select(data): Match[] {
@@ -14,5 +14,14 @@ export default function useFakeFixtures() {
     },
   });
 
-  return { fakeNextMatchesQuery };
+  const fakeLatestMatchesQuery = useQuery({
+    queryKey: ["FakeBannerLatestMatch"],
+    queryFn: () => getOneLatestMatches(),
+    staleTime: 1000 * 60,
+    select(data): Match[] {
+      return data;
+    },
+  });
+
+  return { fakeNextMatchesQuery, fakeLatestMatchesQuery };
 }

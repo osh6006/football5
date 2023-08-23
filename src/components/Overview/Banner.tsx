@@ -22,7 +22,13 @@ const BannerWrapper = styled.div<BannerColor>`
   border-radius: ${(props) => props.theme.border.radius};
   background-color: ${(props) => rgba(darken(0.05, props.$color), 0.9)};
   margin-top: 1rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
+
+  @media (max-width: 1080px) {
+    height: auto;
+    flex-direction: column;
+    gap: 2rem;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -32,6 +38,15 @@ const TitleWrapper = styled.div`
   justify-content: center;
   gap: 1px;
   min-width: 300px;
+
+  @media (max-width: 1080px) {
+    align-items: center;
+    min-width: 100%;
+  }
+`;
+
+const HeaderWrapper = styled.div`
+  margin-bottom: 2.5rem;
 `;
 
 const ButtonWrapper = styled.div`
@@ -91,14 +106,17 @@ const Banner = () => {
   return (
     <BannerWrapper $color={color || "#FFFFFF"}>
       <TitleWrapper>
-        <Title title="Next Match !" />
+        <HeaderWrapper>
+          <Title title="Next Match !" />
+        </HeaderWrapper>
+
         <Title title={(matches && `${matches[0].teams.home.name} VS ${matches[0].teams.away.name}`) || ""} />
         <SubTitle subtitle={(matches && timeStampToDate(matches[0].fixture.date)) || ""} />
         <SubTitle
           subtitle={(matches && `in ${matches[0].fixture.venue.name}, ${matches[0].fixture.venue.city}`) || ""}
         />
         <ButtonWrapper>
-          <Button onClick={() => {}}>더 보기</Button>
+          <Button onClick={() => {}}>더 보기 &#8250;</Button>
         </ButtonWrapper>
       </TitleWrapper>
       <SecondWrapper>
