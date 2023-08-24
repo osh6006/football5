@@ -3,8 +3,6 @@ import useFakeFixtures from "../../hooks/fake/useFakeFixtures";
 import Loading from "../common/Loading";
 import { darken } from "polished";
 import SubTitle from "../common/SubTitle";
-import { Link } from "react-router-dom";
-import { AiOutlineRight } from "@react-icons/all-files/ai/AiOutlineRight";
 import DetailLink from "../common/DetailLink";
 
 interface LiveSwitchProps {
@@ -65,30 +63,37 @@ const LiveSwitch = styled.div<LiveSwitchProps>`
 `;
 
 const MatchWrapper = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const LogoWrapper = styled.div`
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   margin-top: 1rem;
   gap: 0.5rem;
 `;
 
 const Logo = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 90%;
+  height: auto;
+  max-width: 100px;
 `;
 
 const Score = styled.div`
+  flex: 1 1 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 1.5rem;
   gap: 0.5rem;
+  min-width: 110px;
 `;
 
 const LinkWrapper = styled.div`

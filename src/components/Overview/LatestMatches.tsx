@@ -39,7 +39,7 @@ const ScoreWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 const LogoWrapper = styled.div`
   display: flex;
@@ -48,18 +48,23 @@ const LogoWrapper = styled.div`
   align-items: center;
   margin-top: 1rem;
   gap: 0.5rem;
+  text-align: center;
 `;
 const Logo = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 70%;
+  height: auto;
+  min-width: 50px;
+  max-width: 100px;
 `;
 const TeamName = styled.p`
   font-size: 0.8rem;
 `;
 const Score = styled.div`
-  padding: 5px;
+  padding: 8px;
   border-radius: ${(props) => props.theme.border.radius};
   background-color: ${(props) => props.theme.colors.background};
+  min-width: 50px;
+  text-align: center;
 `;
 
 const LatestMatches = () => {

@@ -26,7 +26,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 
   &:focus {
-    outline: 1px solid ${(props) => props.$color};
+    outline: 2px solid #fff;
   }
 `;
 
