@@ -7,3 +7,7 @@ export async function getOneLatestMatches() {
 export async function getTwoNextMatches() {
   return (await axios.get("/apifootball/nextMatches.json")).data.response;
 }
+
+export async function getOneLiveMatch() {
+  return (await axios.get("/apifootball/latestMatches.json")).data.response;
+}

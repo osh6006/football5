@@ -24,6 +24,10 @@ const StyledButton = styled.button<StyledButtonProps>`
   &:hover {
     background-color: ${(props) => lighten(0.4, props.$color)};
   }
+
+  &:focus {
+    outline: 1px solid ${(props) => props.$color};
+  }
 `;
 
 const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
