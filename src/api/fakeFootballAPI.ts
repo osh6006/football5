@@ -11,3 +11,7 @@ export async function getTwoNextMatches() {
 export async function getOneLiveMatch() {
   return (await axios.get("/apifootball/latestMatches.json")).data.response;
 }
+
+export async function getStandings() {
+  return (await axios.get("/apifootball/standings.json")).data.response;
+}

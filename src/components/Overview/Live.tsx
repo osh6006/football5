@@ -87,13 +87,12 @@ const Logo = styled.img`
 `;
 
 const Score = styled.div`
-  flex: 1 1 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   gap: 0.5rem;
-  min-width: 110px;
+  min-width: 60px;
 `;
 
 const LinkWrapper = styled.div`
