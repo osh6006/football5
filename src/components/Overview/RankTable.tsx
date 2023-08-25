@@ -103,7 +103,7 @@ const RankTable = () => {
 
   return (
     <RankTableWrapper>
-      <SectionHeader title="순위" src="123" />
+      <SectionHeader title="리그 순위" src="123" />
       {isError && <Error message="데이터가 없습니다." />}
       {isLoading && <Loading />}
       {isLoading || (
@@ -123,7 +123,7 @@ const RankTable = () => {
               {teams &&
                 teams[0]?.league?.standings[0]?.map(
                   (team: Standing, index: number) =>
-                    index <= 10 && (
+                    index < 10 && (
                       <TableRow $color={color || "#fff"} key={team.team.id}>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>

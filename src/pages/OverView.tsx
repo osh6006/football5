@@ -6,8 +6,10 @@ import LatestMatches from "../components/Overview/LatestMatches";
 import RankTable from "../components/Overview/RankTable";
 import Profile from "../components/Overview/Profile";
 import Live from "../components/Overview/Live";
+import PlayerList from "../components/Overview/PlayerList";
 
 const OverViewWrapper = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   gap: 1rem;
@@ -18,7 +20,7 @@ const OverViewWrapper = styled.div`
   }
 `;
 
-const LeftSideWrapper = styled.div`
+const LeftSideWrapper = styled.section`
   flex: 1;
 `;
 
@@ -33,18 +35,32 @@ const LeftSideTempWrapper = styled.div`
   }
 `;
 
-const RightSideWrapper = styled.div`
+const RightSideWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  position: relative;
   width: 35%;
-  background-color: azure;
+  margin-top: 75px;
+  gap: 1.5rem;
 
   @media (max-width: 1280px) {
     width: 100%;
+    margin-top: 0;
   }
+`;
+
+const ProfileWrapper = styled.div`
+  width: 300px;
+  right: 17%;
+  position: absolute;
 `;
 
 export default function OverView() {
   return (
     <OverViewWrapper>
+      <ProfileWrapper>
+        <Profile email="test@test.com" name="테스트" />
+      </ProfileWrapper>
       <LeftSideWrapper>
         <Title title="어서오세요 Test 님 !" />
         <SubTitle subtitle="다시 오신 것을 환영합니다." />
@@ -56,7 +72,8 @@ export default function OverView() {
         <RankTable />
       </LeftSideWrapper>
       <RightSideWrapper>
-        <Profile email="test@test.com" name="테스트" />
+        <PlayerList title="최다 득점 선수" type="topscorers" />
+        <PlayerList title="최다 도움 선수" type="topassists" />
       </RightSideWrapper>
     </OverViewWrapper>
   );

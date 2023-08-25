@@ -10,8 +10,6 @@ const ProfileWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: darkorchid;
-  height: 100px;
 `;
 
 const Name = styled.div`

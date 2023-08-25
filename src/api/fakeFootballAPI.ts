@@ -15,3 +15,7 @@ export async function getOneLiveMatch() {
 export async function getStandings() {
   return (await axios.get("/apifootball/standings.json")).data.response;
 }
+
+export async function getTopScorer() {
+  return (await axios.get("/apifootball/topScorer.json")).data.response;
+}

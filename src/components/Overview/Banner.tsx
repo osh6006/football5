@@ -107,7 +107,7 @@ const Banner = () => {
     <BannerWrapper $color={color || "#FFFFFF"}>
       <TitleWrapper>
         <HeaderWrapper>
-          <Title title="Next Match !" />
+          <Title title="다음 경기" />
         </HeaderWrapper>
 
         <Title title={(matches && `${matches[0].teams.home.name} VS ${matches[0].teams.away.name}`) || ""} />

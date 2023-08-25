@@ -104,3 +104,27 @@ export async function getLeagueRanking(leagueId: number, season: number) {
     throw new Error("NOT PARAMETER IN GET_RANK");
   }
 }
+
+// 각 분야별 탑 플레이어들을 가져온다.
+export async function getTopPlayer(leagueId: number, season: number, type: string) {
+  if (leagueId && season && type) {
+    const option = {
+      ...basicOpt,
+      url: `${import.meta.env.VITE_FOOTBALL_API_URL}players/${type}`,
+      params: {
+        league: leagueId,
+        season: season,
+      },
+    };
+
+    try {
+      const response = await axios.request(option);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_TOP_PLAYER");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_TOP_PLAYER");
+  }
+}
