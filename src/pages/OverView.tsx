@@ -50,9 +50,14 @@ const RightSideWrapper = styled.section`
 `;
 
 const ProfileWrapper = styled.div`
+  display: block;
   width: 300px;
-  right: 17%;
+  right: 0;
   position: absolute;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export default function OverView() {
