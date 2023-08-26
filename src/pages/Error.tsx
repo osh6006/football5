@@ -24,7 +24,7 @@ const ErrorMessage = styled.p`
 `;
 
 function Error() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // useEffect(() => {
   //   setTimeout(() => {

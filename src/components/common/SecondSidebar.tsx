@@ -72,7 +72,7 @@ const SecondSidebar: React.FC<SecondSidebarProps> = () => {
         {SecondSidebarRoutes?.map((item) => (
           <li key={item.name}>
             <Menu to={`/${title}/${leagueId}${item.path}`} $selectColor={colorObj?.color}>
-              {subTitle ? <item.activeIcon size={26} /> : <item.icon size={26} />}
+              {subTitle === item.name.toLowerCase() ? <item.activeIcon size={26} /> : <item.icon size={26} />}
               {item.name}
             </Menu>
           </li>

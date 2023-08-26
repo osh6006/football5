@@ -2,6 +2,12 @@ import { IconType } from "react-icons";
 import { RiDashboardFill as activeDashboard } from "@react-icons/all-files/ri/RiDashboardFill";
 import { RiDashboardLine as dashboard } from "@react-icons/all-files/ri/RiDashboardLine";
 import { ImSortNumericAsc as ranking } from "@react-icons/all-files/im/ImSortNumericAsc";
+import { AiFillSchedule as activeSchedule } from "@react-icons/all-files/ai/AiFillSchedule";
+import { AiOutlineSchedule as schedule } from "@react-icons/all-files/ai/AiOutlineSchedule";
+import { AiOutlineSearch as search } from "@react-icons/all-files/ai/AiOutlineSearch";
+import { AiOutlineStar as top } from "@react-icons/all-files/ai/AiOutlineStar";
+import { AiFillStar as activeTop } from "@react-icons/all-files/ai/AiFillStar";
+import { SiFacebooklive as live } from "@react-icons/all-files/si/SiFacebooklive";
 
 import laligaSvgPath from "/svgs/la-liga.svg";
 import eplSvgPath from "/svgs/premier.svg";
@@ -32,10 +38,34 @@ export const SecondSidebarRoutes: Omit<ChildRouteType, "svg" | "$scale" | "color
     icon: dashboard,
   },
   {
+    name: "Live",
+    path: "/live",
+    activeIcon: live,
+    icon: live,
+  },
+  {
+    name: "Schedule",
+    path: "/schedule",
+    activeIcon: activeSchedule,
+    icon: schedule,
+  },
+  {
+    name: "Search",
+    path: "/search",
+    activeIcon: search,
+    icon: search,
+  },
+  {
     name: "Rank",
     path: "/rank",
     activeIcon: ranking,
     icon: ranking,
+  },
+  {
+    name: "Top",
+    path: "/top",
+    activeIcon: activeTop,
+    icon: top,
   },
 ];
 

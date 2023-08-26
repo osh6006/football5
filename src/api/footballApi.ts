@@ -8,6 +8,7 @@ const basicOpt = {
   },
 };
 
+// 최근 경기를 가져온다.
 export async function getLatestMatches(leagueId: number, season: number, matches: number) {
   if (leagueId && season && matches) {
     const option = {
@@ -32,6 +33,7 @@ export async function getLatestMatches(leagueId: number, season: number, matches
   }
 }
 
+// 다음 경기를 가져온다.
 export async function getNextMatches(leagueId: number, season: number, matches: number) {
   if (leagueId && season && matches) {
     const option = {
@@ -126,5 +128,31 @@ export async function getTopPlayer(leagueId: number, season: number, type: strin
     }
   } else {
     throw new Error("NOT PARAMETER IN GET_TOP_PLAYER");
+  }
+}
+
+// 리그 스케쥴을 가져온다.
+export async function getLeagueSchedule(leagueId: number, season: number, start: string, end: string) {
+  if (season && leagueId && start && end) {
+    const option = {
+      ...basicOpt,
+      url: `${import.meta.env.VITE_FOOTBALL_API_URL}fixtures`,
+      params: {
+        league: leagueId,
+        season: season,
+        from: start,
+        to: end,
+        timezone: "Asia/Seoul",
+      },
+    };
+
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_LEAGUE_SCHEDULE");
   }
 }
