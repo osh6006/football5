@@ -1,7 +1,10 @@
 import styled, { css } from "styled-components";
-import { AllRouteType } from "../../util/routeData";
-import { NavLink } from "react-router-dom";
+import { AllRouteType, SecondSidebarRoutes } from "../../util/routeData";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { lighten } from "polished";
+
+import { CgMenuRight } from "@react-icons/all-files/cg/CgMenuRight";
+import { useState } from "react";
 
 interface MobileBarProps {
   menus: AllRouteType[];
@@ -15,12 +18,88 @@ interface MenuSvgProps {
   $scale?: number;
 }
 
-const BottomBarWrapper = styled.nav`
+interface TopBarMenuProps {
+  $open: boolean;
+}
+
+const commonBar = styled.nav`
   display: none;
   position: fixed;
+`;
+
+const TopBarWrapper = styled(commonBar)`
+  top: 0;
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.secondBackground};
+  z-index: 100;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+  }
+`;
+
+const TopbarTitle = styled.h1`
+  font-size: 1.3rem;
+  font-weight: bold;
+`;
+const TopbarBtn = styled.button`
+  color: white;
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 100%;
+  &:hover {
+    background-color: gray;
+  }
+
+  &:active {
+    background-color: gray;
+  }
+
+  &:focus {
+    outline: 2px solid white;
+  }
+`;
+
+const TopbarMenuWrapper = styled.nav<TopBarMenuProps>`
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  color: white;
+  width: 50%;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+  top: 60px;
+  right: ${(props) => (props.$open ? "0" : "-1000px")};
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const TopbarMenu = styled(Link)`
+  display: flex;
+  padding: 1.3rem 1.55rem;
+  font-size: 1rem;
+  align-items: center;
+  gap: 1rem;
+
+  @media (min-width: 460px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const BottomBarWrapper = styled(commonBar)`
   bottom: 0;
   color: ${(props) => props.theme.colors.primary};
-  z-index: 10;
+  z-index: 100;
   background-color: ${(props) => props.theme.colors.secondBackground};
 
   @media (max-width: 768px) {
@@ -79,15 +158,46 @@ const MenuSvg = styled.img<MenuSvgProps>`
 `;
 
 const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
+  const [navOpen, setNavOpen] = useState(false);
+
+  const handleClick = () => {
+    setNavOpen(!navOpen);
+  };
+
+  const { pathname } = useLocation();
+  const param = useParams();
+
+  const title = pathname.split("/")[1];
+  const subTitle = pathname.split("/")[3] || "";
+  const leagueId = param.leagueId;
+
   return (
-    <BottomBarWrapper>
-      {menus &&
-        menus?.map((menu) => (
-          <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
-            <MenuSvg alt="League Logo" src={menu.svg} $scale={menu.$mobileScale} />
-          </BottomMenu>
+    <>
+      <TopBarWrapper>
+        <TopbarTitle>Football 5</TopbarTitle>
+        <TopbarBtn onClick={handleClick}>
+          <CgMenuRight size={25} />
+        </TopbarBtn>
+      </TopBarWrapper>
+      <TopbarMenuWrapper $open={navOpen}>
+        {SecondSidebarRoutes?.map((item) => (
+          <li key={item.name}>
+            <TopbarMenu onClick={handleClick} to={`/${title}/${leagueId}${item.path}`}>
+              {subTitle === item.name.toLowerCase() ? <item.activeIcon /> : <item.icon />}
+              {item.name}
+            </TopbarMenu>
+          </li>
         ))}
-    </BottomBarWrapper>
+      </TopbarMenuWrapper>
+      <BottomBarWrapper>
+        {menus &&
+          menus?.map((menu) => (
+            <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
+              <MenuSvg alt="League Logo" src={menu.svg} $scale={menu.$mobileScale} />
+            </BottomMenu>
+          ))}
+      </BottomBarWrapper>
+    </>
   );
 };
 
