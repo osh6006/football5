@@ -14,6 +14,7 @@ import { formatDateToISO } from "../util/date";
 import { Match } from "../type/fixtures";
 import { ScheduleEvent } from "../type/schedule";
 import { formatSchedule } from "../util/schedule";
+import { useCallback } from "react";
 
 const ScheduleWrapper = styled.section`
   padding: 1rem;
@@ -28,25 +29,29 @@ const SchedulerTable = styled.div`
 export default function Schedule() {
   const leagueId = useLeagueId();
 
-  const fetchRemote = async (query: ViewEvent): Promise<ProcessedEvent[]> => {
-    const season = new Date(query.start).getFullYear();
-    const start = formatDateToISO(query.start);
-    const end = formatDateToISO(query.end);
+  const fetchRemote = useCallback(
+    async (query: ViewEvent): Promise<ProcessedEvent[]> => {
+      const season = new Date(query.start).getFullYear();
+      const start = formatDateToISO(query.start);
+      const end = formatDateToISO(query.end);
 
-    const schedules: Match[] = await getLeagueSchedule(leagueId, season, start, end);
+      const schedules: Match[] = await getLeagueSchedule(leagueId, season, start, end);
 
-    return new Promise((res) => {
-      const formatSchedules: ScheduleEvent[] = schedules.map((schedule, i) => {
-        return formatSchedule(schedule, i);
+      return new Promise((res) => {
+        const formatSchedules: ScheduleEvent[] = schedules.map((schedule, i) => {
+          return formatSchedule(schedule, i);
+        });
+        res(formatSchedules);
       });
-      res(formatSchedules);
-    });
-  };
+    },
+
+    [leagueId]
+  );
 
   return (
     <ScheduleWrapper>
       <Title title="경기 일정" />
-      <SubTitle subtitle="모든 경기 일정을 확인해 보세요." />
+      <SubTitle subtitle="리그별 모든 경기 일정을 확인해 보세요." />
       <br />
       <SchedulerTable>
         <Scheduler

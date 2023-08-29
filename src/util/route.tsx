@@ -4,6 +4,7 @@ import Error from "../pages/Error";
 import OverView from "../pages/OverView";
 import League from "../pages/League";
 import Schedule from "../pages/Schedule";
+import Live from "../pages/Live";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "live",
-                element: <div>Hello Rank</div>,
+                element: <Live />,
               },
               {
                 path: "schedule",

@@ -12,7 +12,7 @@ interface MenuProps {
 }
 
 const SecondSidebarWrapper = styled.nav`
-  width: 300px;
+  width: 250px;
   display: flex;
   flex-direction: column;
 `;

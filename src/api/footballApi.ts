@@ -156,3 +156,25 @@ export async function getLeagueSchedule(leagueId: number, season: number, start:
     throw new Error("NOT PARAMETER IN GET_LEAGUE_SCHEDULE");
   }
 }
+
+// 라이브 스코어 데이터를 가져온다.
+export async function getLiveScore(fixturesId: string) {
+  if (fixturesId) {
+    const option = {
+      ...basicOpt,
+      url: `${import.meta.env.VITE_FOOTBALL_API_URL}fixtures`,
+      params: {
+        id: fixturesId,
+      },
+    };
+
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_LEAGUE_SCHEDULE");
+  }
+}
