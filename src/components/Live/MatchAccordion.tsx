@@ -17,10 +17,7 @@ interface AccordionProps {
   $isOpen: boolean;
 }
 
-const AccordionContainer = styled.div`
-  border-radius: ${(props) => props.theme.border.radius};
-  overflow: hidden;
-`;
+const AccordionContainer = styled.div``;
 
 const AccordionHeader = styled.div`
   display: flex;
@@ -31,6 +28,8 @@ const AccordionHeader = styled.div`
   padding: 10px 1rem;
   font-size: 1.2rem;
   cursor: pointer;
+  border-top-right-radius: ${(props) => props.theme.border.radius};
+  border-top-left-radius: ${(props) => props.theme.border.radius};
 `;
 
 const HeaderTitle = styled.h4`
@@ -64,6 +63,12 @@ const AccordionContent = styled.div<AccordionProps>`
         `}
 `;
 
+const LiveWrapper = styled.div`
+  padding: 0.5rem;
+  background-color: yellowgreen;
+  border-radius: ${(props) => props.theme.border.radius};
+`;
+
 const MatchAccordion: React.FC<MatchAccordionProps> = ({ title, fixturesId }) => {
   // const {
   //   liveScoreQuery: { data: liveData, isError, isLoading },
@@ -80,6 +85,8 @@ const MatchAccordion: React.FC<MatchAccordionProps> = ({ title, fixturesId }) =>
     setIsOpen(!isOpen);
   };
 
+  console.log(liveData);
+
   return (
     <AccordionContainer>
       {isError && <Error message="데이터에 오류가 발생하였습니다." />}
@@ -87,13 +94,14 @@ const MatchAccordion: React.FC<MatchAccordionProps> = ({ title, fixturesId }) =>
       {isLoading || (
         <>
           <AccordionHeader onClick={toggleAccordion}>
+            <LiveWrapper>LIVE</LiveWrapper>
             <HeaderTitle>{title}</HeaderTitle>
             <AccordionIcon $isOpen={isOpen}>
               <BsChevronDown />
             </AccordionIcon>
           </AccordionHeader>
           <AccordionContent $isOpen={isOpen}>
-            <HeadToHead team={liveData && liveData[0].teams} />
+            <HeadToHead team={liveData && liveData[0].teams} score={liveData && liveData[0].score} />
             <LineUp lineUp={liveData && liveData[0].lineups} />
           </AccordionContent>
         </>

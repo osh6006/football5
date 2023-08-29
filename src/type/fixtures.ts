@@ -42,7 +42,7 @@ interface Goals {
   away: null | number;
 }
 
-interface Score {
+export interface Score {
   halftime: Goals;
   fulltime: Goals;
   extratime: Goals;
