@@ -143,7 +143,10 @@ export interface LineUp {
   team: LineUpTeam;
 }
 
-interface Statistic {}
+interface Statistic {
+  type: string;
+  value: number;
+}
 
 interface StatisticsTeam {
   id: number | null;
@@ -153,10 +156,11 @@ interface StatisticsTeam {
 
 interface Statistics {
   team: StatisticsTeam;
+  statistic: Statistic[];
 }
 
 export interface LiveMatch extends Match {
   events: Events[];
   lineups: LineUp[];
-  statistics: string;
+  statistics: Statistics[];
 }
