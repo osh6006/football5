@@ -26,7 +26,9 @@ const Logo = styled.img`
   width: 70%;
   max-width: 150px;
 `;
-const TeamName = styled.h2``;
+const TeamName = styled.h2`
+  font-weight: bold;
+`;
 
 const Score = styled.h2`
   display: flex;
@@ -45,7 +47,7 @@ function HeadToHead({ team, score }: HeadToHeadProps) {
       </Score>
       <Away>
         <Logo src={team?.away.logo} alt={"AwayLogo"} />
-        <TeamName>{team?.home.name}</TeamName>
+        <TeamName>{team?.away.name}</TeamName>
       </Away>
     </HeadToHeadWrapper>
   );

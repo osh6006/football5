@@ -37,7 +37,7 @@ export interface Team {
   away: HomeAway;
 }
 
-interface Goals {
+export interface Goals {
   home: null | number;
   away: null | number;
 }
@@ -76,7 +76,7 @@ interface Time {
 interface LiveTeam {
   id: number | null;
   name: string | null;
-  logo: string | null;
+  logo: string;
 }
 
 interface Player {
@@ -89,7 +89,7 @@ interface Assist {
   name: string | null;
 }
 
-interface Events {
+export interface Events {
   time: Time;
   team: LiveTeam;
   player: Player;
@@ -102,7 +102,7 @@ interface Events {
 interface Coach {
   id: number | null;
   name: string | null;
-  photo: string | null;
+  photo: string;
 }
 
 interface LineUpPlayer {
@@ -131,8 +131,8 @@ interface LineUpColors {
 interface LineUpTeam {
   colors: LineUpColors;
   id: number | null;
-  logo: string | null;
-  name: string | null;
+  logo: string;
+  name: string;
 }
 
 export interface LineUp {

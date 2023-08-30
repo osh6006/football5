@@ -5,7 +5,7 @@ import SubTitle from "../components/common/SubTitle";
 import MatchAccordion from "../components/Live/MatchAccordion";
 
 const LiveWrapper = styled.section`
-  padding: 1rem;
+  padding: 1rem 1rem;
 `;
 
 const MatchesWrapper = styled.div`

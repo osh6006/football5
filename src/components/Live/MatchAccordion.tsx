@@ -7,6 +7,7 @@ import LineUp from "./LineUp";
 import HeadToHead from "./HeadToHead";
 import Error from "../common/Error";
 import Loading from "../common/Loading";
+import Event from "./Event";
 
 interface MatchAccordionProps {
   title: string;
@@ -48,7 +49,9 @@ const AccordionIcon = styled.div<AccordionProps>`
 `;
 
 const AccordionContent = styled.div<AccordionProps>`
-  padding: 10px;
+  padding: 0.5rem;
+  padding-bottom: 1.5rem;
+  overflow-y: scroll;
   transition: max-height 0.3s ease-in-out;
 
   ${(props) =>
@@ -102,6 +105,7 @@ const MatchAccordion: React.FC<MatchAccordionProps> = ({ title, fixturesId }) =>
           </AccordionHeader>
           <AccordionContent $isOpen={isOpen}>
             <HeadToHead team={liveData && liveData[0].teams} score={liveData && liveData[0].score} />
+            <Event events={liveData && liveData[0].events} />
             <LineUp lineUp={liveData && liveData[0].lineups} />
           </AccordionContent>
         </>
