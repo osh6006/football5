@@ -29,24 +29,24 @@ const SchedulerTable = styled.div`
 export default function Schedule() {
   const leagueId = useLeagueId();
 
-  const fetchRemote = useCallback(
-    async (query: ViewEvent): Promise<ProcessedEvent[]> => {
-      const season = new Date(query.start).getFullYear();
-      const start = formatDateToISO(query.start);
-      const end = formatDateToISO(query.end);
+  // const fetchRemote = useCallback(
+  //   async (query: ViewEvent): Promise<ProcessedEvent[]> => {
+  //     const season = new Date(query.start).getFullYear();
+  //     const start = formatDateToISO(query.start);
+  //     const end = formatDateToISO(query.end);
 
-      const schedules: Match[] = await getLeagueSchedule(leagueId, season, start, end);
+  //     const schedules: Match[] = await getLeagueSchedule(leagueId, season, start, end);
 
-      return new Promise((res) => {
-        const formatSchedules: ScheduleEvent[] = schedules.map((schedule, i) => {
-          return formatSchedule(schedule, i);
-        });
-        res(formatSchedules);
-      });
-    },
+  //     return new Promise((res) => {
+  //       const formatSchedules: ScheduleEvent[] = schedules.map((schedule, i) => {
+  //         return formatSchedule(schedule, i);
+  //       });
+  //       res(formatSchedules);
+  //     });
+  //   },
 
-    [leagueId]
-  );
+  //   [leagueId]
+  // );
 
   return (
     <ScheduleWrapper>

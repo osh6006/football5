@@ -13,14 +13,16 @@ const SearchForm = styled.form`
   padding: 12px 0;
   margin-top: 1rem;
   border-radius: 92px;
-  transform: translateX(-23%);
+  transform: translateX(-50%);
   background-color: ${(props) => props.theme.colors.activeBackground};
   max-width: 500px;
   min-width: 300px;
   z-index: 10;
 
-  &.focused {
-    outline: 2px solid ${(props) => props.theme.colors.primary};
+  outline: 2px solid ${(props) => props.theme.colors.primary};
+
+  &:focus {
+    outline: 2px solid red;
   }
 
   @media (max-width: 768px) {
@@ -29,7 +31,6 @@ const SearchForm = styled.form`
 
   @media (max-width: 1280px) {
     transform: translateX(-40%);
-
     width: 50%;
   }
 `;
@@ -44,6 +45,11 @@ const SearchInput = styled.input`
   margin-left: 2rem;
   outline: none;
   flex: 1;
+  color: ${(props) => props.theme.colors.white};
+
+  &::placeholder {
+    color: ${(props) => props.theme.colors.gray};
+  }
 `;
 
 const SearchSpan = styled.span`
@@ -51,12 +57,12 @@ const SearchSpan = styled.span`
   width: 1px;
   height: 28px;
   margin: -3px 0;
-  background-color: gray;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const SearchBtn = styled.button`
   padding: 10px 16px;
-  color: gray;
+  color: ${(props) => props.theme.colors.white};
   cursor: pointer;
   outline: none;
   border: none;
@@ -84,7 +90,11 @@ const SearchBar = () => {
 
   return (
     <SearchForm className={isInputFocused ? "focused" : ""}>
-      <SearchInput placeholder="Something Search" onFocus={handleInputFocus} onBlur={handleInputBlur} />
+      <SearchInput
+        placeholder="팀이나 선수를 검색해 보세요 (영어로)"
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+      />
       <SearchSpan />
       <SearchBtn type="submit">
         <AiOutlineSearch size="25" />

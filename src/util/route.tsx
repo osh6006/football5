@@ -5,6 +5,7 @@ import OverView from "../pages/OverView";
 import League from "../pages/League";
 import Schedule from "../pages/Schedule";
 import Live from "../pages/Live";
+import Search from "../pages/Search";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "search",
-                element: <div>Hello Rank</div>,
+                element: <Search />,
               },
               {
                 path: "top",

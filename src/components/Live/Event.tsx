@@ -11,6 +11,7 @@ const EventWrapper = styled.div`
   justify-content: center;
   gap: 0.5rem;
   margin: 1rem 0;
+  border: 2px solid gray;
 `;
 
 const TempDiv = styled.div``;

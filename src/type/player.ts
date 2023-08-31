@@ -89,7 +89,7 @@ interface Penalty {
   saved: number | null;
 }
 
-interface Player {
+export interface Player {
   id: number | null;
   name: string;
   firstname: string;

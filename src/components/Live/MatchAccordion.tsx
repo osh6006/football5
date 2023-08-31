@@ -49,11 +49,11 @@ const AccordionIcon = styled.div<AccordionProps>`
 `;
 
 const AccordionContent = styled.div<AccordionProps>`
-  padding: 0.5rem;
-  padding-bottom: 1.5rem;
+  padding: 1.5rem 0.5rem;
   overflow-y: scroll;
   transition: max-height 0.3s ease-in-out;
-
+  background-color: ${(props) => props.theme.colors.background};
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   ${(props) =>
     props.$isOpen
       ? css`
