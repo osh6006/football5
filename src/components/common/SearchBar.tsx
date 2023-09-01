@@ -2,7 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
 
-const SearchForm = styled.form`
+interface SearchBarProps {
+  searchValue: string;
+  onSearchValueChange: (newValue: string) => void;
+}
+
+const SearchForm = styled.div`
   width: 40%;
   position: absolute;
   display: flex;
@@ -73,11 +78,11 @@ const SearchBtn = styled.button`
 
   &:hover {
     font-weight: bold;
-    background-color: #e0e0e0;
+    background-color: ${(props) => props.theme.colors.secondBackground};
   }
 `;
 
-const SearchBar = () => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearchValueChange, searchValue }) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
 
   const handleInputFocus = () => {
@@ -88,12 +93,19 @@ const SearchBar = () => {
     setIsInputFocused(false);
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    onSearchValueChange(newValue);
+  };
+
   return (
     <SearchForm className={isInputFocused ? "focused" : ""}>
       <SearchInput
         placeholder="팀이나 선수를 검색해 보세요 (영어로)"
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        value={searchValue}
+        onChange={handleInputChange}
       />
       <SearchSpan />
       <SearchBtn type="submit">

@@ -151,6 +151,7 @@ export async function getLeagueSchedule(leagueId: number, season: number, start:
       return response.data.response;
     } catch (error) {
       console.error(error);
+      throw new Error("ERROR GET DATA IN GET_LEAGUE_SCHEDULE");
     }
   } else {
     throw new Error("NOT PARAMETER IN GET_LEAGUE_SCHEDULE");
@@ -173,8 +174,78 @@ export async function getLiveScore(fixturesId: string) {
       return response.data.response;
     } catch (error) {
       console.error(error);
+      throw new Error("ERROR GET DATA IN GET_LIVE_SCORE");
     }
   } else {
-    throw new Error("NOT PARAMETER IN GET_LEAGUE_SCHEDULE");
+    throw new Error("NOT PARAMETER IN GET_LIVE_SCORE");
+  }
+}
+
+// 선수를 검색한 결과의 데이터를 가져온다.
+export async function getSearchPlayer(leagueId: number, name: string) {
+  if (leagueId && name) {
+    const option = {
+      ...basicOpt,
+      url: `${import.meta.env.VITE_FOOTBALL_API_URL}players`,
+      params: {
+        league: leagueId,
+        search: name,
+      },
+    };
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_SEARCH_PLAYER");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_SEARCH_PLAYER");
+  }
+}
+
+// 감독을 검색한 결과의 데이터를 가져온다.
+export async function getSearchCoach(leagueId: number, name: string) {
+  if (leagueId && name) {
+    const option = {
+      ...basicOpt,
+      url: `${import.meta.env.VITE_FOOTBALL_API_URL}coachs`,
+      params: {
+        league: leagueId,
+        search: name,
+      },
+    };
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_SEARCH_COACH");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_SEARCH_COACH");
+  }
+}
+
+// 팀을 검색한 결과의 데이터를 가져온다.
+export async function getCoachTeam(leagueId: number, name: string) {
+  if (leagueId && name) {
+    const option = {
+      ...basicOpt,
+      url: `${import.meta.env.VITE_FOOTBALL_API_URL}teams`,
+      params: {
+        league: leagueId,
+        search: name,
+      },
+    };
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_SEARCH_TEAM");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_SEARCH_TEAM");
   }
 }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styled from "styled-components";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
@@ -22,16 +24,21 @@ const SearchContentsWrapper = styled.div`
 const SearchContentHeader = styled.div``;
 
 export default function Search() {
+  const [searchValue, setSearchValue] = useState<string>("");
+  const handleSearchValueChange = (newValue: string) => {
+    setSearchValue(newValue);
+  };
+
   return (
     <SearchWrapper>
       <Title title="Search" />
       <SubTitle subtitle="리그 팀과 선수들을 검색해 보세요. " />
       <SearchContentsWrapper>
         <SearchContentHeader>
-          <SearchBar />
+          <SearchBar searchValue={searchValue} onSearchValueChange={handleSearchValueChange} />
         </SearchContentHeader>
         <StyledHr />
-        <SearchResult />
+        <SearchResult searchValue={searchValue} />
       </SearchContentsWrapper>
     </SearchWrapper>
   );

@@ -23,3 +23,7 @@ export async function getTopScorer() {
 export async function getLiveScore() {
   return (await axios.get("/apifootball/liveData.json")).data.response;
 }
+
+export async function getSearchResult() {
+  return (await axios.get("/apifootball/search.json")).data.response;
+}

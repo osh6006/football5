@@ -1,6 +1,18 @@
 import styled from "styled-components";
+import useFakeSearch from "../../hooks/fake/useFakeSearch";
+import useSearch from "../../hooks/useSearch";
+import useLeagueId from "../../hooks/useLeagueId";
+import Loading from "../common/Loading";
+import Error from "../common/Error";
+
+interface SearchResultProps {
+  searchValue: string;
+}
 
 const SearchResultWrapper = styled.div`
+  display: grid;
+  grid-column: repeat(3, 1fr);
+  background-color: red;
   margin-top: 5vh;
 `;
 
@@ -13,10 +25,35 @@ const NotResult = styled.div`
   min-height: 500px;
 `;
 
-const SearchResult = () => {
+const SearchResult: React.FC<SearchResultProps> = ({ searchValue }) => {
+  const leagueId = useLeagueId();
+
+  // const {
+  //   searchPlayerQuery: { data: players, isError:isPlayerError, isPlayerLoading },
+  //   searchCoachQuery: { data: coachs, isCoachError, isCoachLoading },
+  //   searchTeamQuery: { data: teams, isTeamError, isTeamLoading },
+
+  // } = useSearch(leagueId, searchValue);
+
+  // const isLoading = isPlayerLoading || isCoachLoading || isTeamLoading;
+  // const isError = isTeamError || isCoachError || isPlayerError;
+
+  const {
+    searchQuery: { data: players, isError, isLoading },
+  } = useFakeSearch();
+
+  console.log(players);
+
   return (
     <SearchResultWrapper>
-      <NotResult>검색한 결과가 없어요 :) 다시 검색해주세요!</NotResult>
+      {isLoading && <Loading />}
+      {isError && <Error message="데이터를 불러오는 중 오류가 발생했습니다." />}
+      {/* {players?.length === 0 && coachs.length === 0 && teams.length === 0 && (
+        <NotResult>검색된 결과가 없어요 :) 다시 검색해주세요!</NotResult>
+      )} */}
+      <div>asdf</div>
+      <div>asdf</div>
+      <div>asdf</div>
     </SearchResultWrapper>
   );
 };
