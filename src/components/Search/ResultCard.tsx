@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Team } from "../../type/fixtures";
 import { Players } from "../../type/player";
-import { Coach } from "../../type/search";
+import { Coach, SearchTeam } from "../../type/search";
 import useColor from "../../hooks/useColor";
 import { mix } from "polished";
 
@@ -9,7 +8,7 @@ interface ResultCardProps {
   type: "team" | "player" | "coach";
   playerInfo?: Players;
   coachInfo?: Coach;
-  teamInfo?: Team;
+  teamInfo?: SearchTeam;
 }
 
 interface CardProps {
@@ -70,16 +69,19 @@ const Height = styled.h3`
 const StatItem = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   text-align: center;
   color: ${(props) => props.theme.colors.gray};
   gap: 4px;
 `;
 
-const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo }) => {
+const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coachInfo }) => {
   const color = useColor();
+
   const player = playerInfo?.player;
   const stat = playerInfo?.statistics[0];
+
+  const career = coachInfo?.career[0];
 
   return (
     <ResultCardWrapper $color={color || "#fff"}>
@@ -108,6 +110,54 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo }) =
             <StatItem>
               <Height>{stat.goals.total}</Height>
               <p>실점</p>
+            </StatItem>
+          </Stat>
+        </>
+      )}
+
+      {type === "coach" && coachInfo && career && (
+        <>
+          <Header $color={color || "#fff"}>
+            <TitleWrapper>
+              <Name>{coachInfo.name}</Name>
+              <Position>{`${coachInfo.age} / 감독`}</Position>
+            </TitleWrapper>
+            <Avatar src={coachInfo.photo} alt="Avatar" />
+          </Header>
+          <Stat>
+            <StatItem>
+              <Height>{career.team.name}</Height>
+              <p>팀</p>
+            </StatItem>
+            <StatItem>
+              <Height>{`${career.start} ~`}</Height>
+              <p>기간</p>
+            </StatItem>
+            <StatItem>
+              <Height>{coachInfo.nationality}</Height>
+              <p>국가</p>
+            </StatItem>
+          </Stat>
+        </>
+      )}
+
+      {type === "team" && teamInfo && (
+        <>
+          <Header $color={color || "#fff"}>
+            <TitleWrapper>
+              <Name>{teamInfo.name}</Name>
+              <Position>{`${teamInfo.country}`}</Position>
+            </TitleWrapper>
+            <Avatar src={teamInfo.logo} alt="Avatar" />
+          </Header>
+          <Stat>
+            <StatItem>
+              <Height>{career.team.name}</Height>
+              <p>팀</p>
+            </StatItem>
+            <StatItem>
+              <Height>{`${career.start} ~`}</Height>
+              <p>기간</p>
             </StatItem>
           </Stat>
         </>
