@@ -152,12 +152,12 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
           </Header>
           <Stat>
             <StatItem>
-              <Height>{career.team.name}</Height>
-              <p>팀</p>
+              <Height>{teamInfo.venue.name}</Height>
+              <p>구장</p>
             </StatItem>
             <StatItem>
-              <Height>{`${career.start} ~`}</Height>
-              <p>기간</p>
+              <Height>{teamInfo.venue.city}</Height>
+              <p>도시</p>
             </StatItem>
           </Stat>
         </>
