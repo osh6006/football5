@@ -4,6 +4,7 @@ import useSearch from "../../hooks/useSearch";
 import useLeagueId from "../../hooks/useLeagueId";
 import Loading from "../common/Loading";
 import Error from "../common/Error";
+import ResultCard from "./ResultCard";
 
 interface SearchResultProps {
   searchValue: string;
@@ -11,8 +12,7 @@ interface SearchResultProps {
 
 const SearchResultWrapper = styled.div`
   display: grid;
-  grid-column: repeat(3, 1fr);
-  background-color: red;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 5vh;
 `;
 
@@ -48,12 +48,17 @@ const SearchResult: React.FC<SearchResultProps> = ({ searchValue }) => {
     <SearchResultWrapper>
       {isLoading && <Loading />}
       {isError && <Error message="데이터를 불러오는 중 오류가 발생했습니다." />}
+      {players &&
+        players?.length > 0 &&
+        players.map((playerInfo) => {
+          return <ResultCard type="player" key={playerInfo.player.id} playerInfo={playerInfo} />;
+        })}
       {/* {players?.length === 0 && coachs.length === 0 && teams.length === 0 && (
         <NotResult>검색된 결과가 없어요 :) 다시 검색해주세요!</NotResult>
       )} */}
-      <div>asdf</div>
-      <div>asdf</div>
-      <div>asdf</div>
+
+      {/* {coachs && coachs?.length > 0 && <></>}
+      {teams && teams?.length > 0 && <></>} */}
     </SearchResultWrapper>
   );
 };
