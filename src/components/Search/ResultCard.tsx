@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { Players } from "../../type/player";
 import { Coach, SearchTeam } from "../../type/search";
 import useColor from "../../hooks/useColor";
-import { mix } from "polished";
+import { lighten, mix } from "polished";
+
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface ResultCardProps {
   type: "team" | "player" | "coach";
@@ -16,6 +19,7 @@ interface CardProps {
 }
 
 const ResultCardWrapper = styled.div<CardProps>`
+  min-width: 200px;
   padding: 1rem;
   border-radius: ${(props) => props.theme.border.radius};
   background-color: ${(props) => mix(0.8, "#808080", props.$color)};
@@ -23,7 +27,7 @@ const ResultCardWrapper = styled.div<CardProps>`
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: red;
+    background-color: ${(props) => lighten(0.15, mix(0.8, "#808080", props.$color))};
   }
 `;
 
@@ -36,7 +40,7 @@ const Header = styled.div<CardProps>`
   padding-bottom: 1rem;
 `;
 
-const Avatar = styled.img`
+const Avatar = styled(LazyLoadImage)`
   max-width: 50px;
   border-radius: 50%;
 `;
@@ -47,7 +51,7 @@ const TitleWrapper = styled.div`
   gap: 0.5rem;
 `;
 const Name = styled.h1`
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 `;
 
 const Position = styled(Name)`
@@ -80,7 +84,6 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
 
   const player = playerInfo?.player;
   const stat = playerInfo?.statistics[0];
-
   const career = coachInfo?.career[0];
 
   return (
@@ -92,7 +95,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
               <Name>{player.name}</Name>
               <Position>{`${player.age} / ${stat.games.position}`}</Position>
             </TitleWrapper>
-            <Avatar src={player.photo} alt="Avatar" />
+            <Avatar effect="blur" src={player.photo} alt="Avatar" />
           </Header>
           <Stat>
             <StatItem>
@@ -122,7 +125,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
               <Name>{coachInfo.name}</Name>
               <Position>{`${coachInfo.age} / 감독`}</Position>
             </TitleWrapper>
-            <Avatar src={coachInfo.photo} alt="Avatar" />
+            <Avatar effect="blur" src={coachInfo.photo} alt="Avatar" />
           </Header>
           <Stat>
             <StatItem>
@@ -148,7 +151,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ type, playerInfo, teamInfo, coa
               <Name>{teamInfo.name}</Name>
               <Position>{`${teamInfo.country}`}</Position>
             </TitleWrapper>
-            <Avatar src={teamInfo.logo} alt="Avatar" />
+            <Avatar effect="blur" src={teamInfo.logo} alt="Avatar" />
           </Header>
           <Stat>
             <StatItem>

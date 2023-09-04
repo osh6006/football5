@@ -4,6 +4,9 @@ import useFakePlayer from "../../hooks/fake/useFakePlayer";
 import Loading from "../common/Loading";
 import Error from "../common/Error";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 interface PlayerListProps {
   title: string;
   type: string;
@@ -31,7 +34,7 @@ const ImageWrapper = styled.div`
   align-items: center;
   gap: 1rem;
 `;
-const PlayerImg = styled.img`
+const PlayerImg = styled(LazyLoadImage)`
   width: 40px;
   border-radius: 100%;
 `;
@@ -63,7 +66,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ type, title }) => {
                 index < 10 && (
                   <Player key={playerData.player.id}>
                     <ImageWrapper>
-                      <PlayerImg src={playerData.player.photo} alt="Profile" />
+                      <PlayerImg effect="blur" src={playerData.player.photo} alt="Profile" />
                       <Name>{playerData.player.name}</Name>
                     </ImageWrapper>
                     <Goals>{`${playerData.statistics[0].goals.total} ${

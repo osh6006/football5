@@ -3,6 +3,9 @@ import { LineUp } from "../../type/fixtures";
 import { lighten } from "polished";
 import useColor from "../../hooks/useColor";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 interface LineUpProps {
   lineUp?: LineUp[];
 }
@@ -63,7 +66,7 @@ const TeamName = styled.h3`
 const Formation = styled.h4`
   color: ${(props) => props.theme.colors.gray};
 `;
-const Logo = styled.img`
+const Logo = styled(LazyLoadImage)`
   max-width: 35px;
 `;
 const CategoryTitle = styled.h4<ColorProps>`
@@ -94,7 +97,7 @@ const Category = styled.h5<ColorProps>`
     }) => gray};
 `;
 
-const PlayerImg = styled.img`
+const PlayerImg = styled(LazyLoadImage)`
   max-width: 25px;
   border-radius: 50%;
 `;
@@ -115,11 +118,11 @@ const LineUp: React.FC<LineUpProps> = ({ lineUp }) => {
                 <TeamName>{HomeTeam.team.name}</TeamName>
                 <Formation>{HomeTeam.formation}</Formation>
               </TeamNameWrapper>
-              <Logo src={HomeTeam.team.logo} alt="HomeTeamLogo" />
+              <Logo effect="blur" src={HomeTeam.team.logo} alt="HomeTeamLogo" />
             </Header>
             <CategoryTitle $color={color || "#FFF"}>감독</CategoryTitle>
             <Category $color={color || "#FFF"}>
-              <PlayerImg src={HomeTeam.coach.photo} /> {HomeTeam.coach.name}
+              <PlayerImg effect="blur" src={HomeTeam.coach.photo} /> {HomeTeam.coach.name}
             </Category>
             <CategoryTitle $color={color || "#FFF"}>선발 멤버</CategoryTitle>
             {HomeTeam.startXI.map((player) => (

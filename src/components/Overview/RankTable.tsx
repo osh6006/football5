@@ -7,6 +7,9 @@ import useColor from "../../hooks/useColor";
 import { mix } from "polished";
 import Error from "../common/Error";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 interface TableProps {
   $color: string;
 }
@@ -91,7 +94,7 @@ const LogoWrapper = styled.span<TableProps>`
   background-color: ${(props) => props.$color};
 `;
 
-const Logo = styled.img`
+const Logo = styled(LazyLoadImage)`
   width: 25px;
 `;
 
@@ -129,10 +132,10 @@ const RankTable = () => {
                         <TableCell>
                           <LogoNameWrapper>
                             <LogoWrapper $color={color || "#fff"}>
-                              <Logo src={team.team.logo} alt="TeamLogo" />
+                              <Logo effect="blur" src={team.team.logo} alt="TeamLogo" />
                             </LogoWrapper>
                             {team.team.name}
-                          </LogoNameWrapper>{" "}
+                          </LogoNameWrapper>
                         </TableCell>
                         <TabletOnlyTableCell>{team.all.played}</TabletOnlyTableCell>
                         <TabletOnlyTableCell>{team.goalsDiff}</TabletOnlyTableCell>

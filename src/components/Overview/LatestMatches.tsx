@@ -6,6 +6,9 @@ import { mix } from "polished";
 import SubTitle from "../common/SubTitle";
 import Loading from "../common/Loading";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 interface MatchProps {
   $color: string;
 }
@@ -50,7 +53,7 @@ const LogoWrapper = styled.div`
   gap: 0.5rem;
   text-align: center;
 `;
-const Logo = styled.img`
+const Logo = styled(LazyLoadImage)`
   width: 70%;
   height: auto;
   min-width: 50px;
@@ -86,12 +89,12 @@ const LatestMatches = () => {
                 <SubTitle subtitle={matches[0].league.round || ""} />
                 <ScoreWrapper>
                   <LogoWrapper>
-                    <Logo src={matches[0].teams.home.logo || "Not-Name"} alt="logo" />
+                    <Logo effect="blur" src={matches[0].teams.home.logo || "Not-Name"} alt="logo" />
                     <TeamName>{matches[0].teams.home.name || "Not-Name"}</TeamName>
                   </LogoWrapper>
                   <Score>{`${matches[0].goals.home} : ${matches[0].goals.away}`}</Score>
                   <LogoWrapper>
-                    <Logo src={matches[0].teams.away.logo || "Not-Name"} alt="logo" />
+                    <Logo effect="blur" src={matches[0].teams.away.logo || "Not-Name"} alt="logo" />
                     <TeamName>{matches[0].teams.away.name || "Not-Name"}</TeamName>
                   </LogoWrapper>
                 </ScoreWrapper>
@@ -100,12 +103,12 @@ const LatestMatches = () => {
                 <SubTitle subtitle={matches[0].league.round || ""} />
                 <ScoreWrapper>
                   <LogoWrapper>
-                    <Logo src={matches[0].teams.home.logo || "Not-Name"} alt="logo" />
+                    <Logo effect="blur" src={matches[0].teams.home.logo || "Not-Name"} alt="logo" />
                     <TeamName>{matches[0].teams.home.name || "Not-Name"}</TeamName>
                   </LogoWrapper>
                   <Score>{`${matches[0].goals.home} : ${matches[0].goals.away}`}</Score>
                   <LogoWrapper>
-                    <Logo src={matches[0].teams.away.logo || "Not-Name"} alt="logo" />
+                    <Logo effect="blur" src={matches[0].teams.away.logo || "Not-Name"} alt="logo" />
                     <TeamName>{matches[0].teams.away.name || "Not-Name"}</TeamName>
                   </LogoWrapper>
                 </ScoreWrapper>

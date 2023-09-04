@@ -6,6 +6,7 @@ import League from "../pages/League";
 import Schedule from "../pages/Schedule";
 import Live from "../pages/Live";
 import Search from "../pages/Search";
+import Rank from "../pages/Rank";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "rank",
-                element: <div>Hello Rank</div>,
+                element: <Rank />,
               },
               {
                 path: "search",

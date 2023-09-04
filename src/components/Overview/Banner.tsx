@@ -7,6 +7,10 @@ import Title from "../common/Title";
 import SubTitle from "../common/SubTitle";
 import { timeStampToDate } from "../../util/date";
 import Button from "../common/Button";
+
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 // import useLeagueId from "../../hooks/useLeagueId";
 // import useFixtures from "../../hooks/useFixtures";
 
@@ -71,7 +75,7 @@ const LogoWrapper = styled.div`
   gap: 1rem;
 `;
 
-const Logo = styled.img`
+const Logo = styled(LazyLoadImage)`
   width: 60%;
 `;
 
@@ -121,12 +125,12 @@ const Banner = () => {
       </TitleWrapper>
       <SecondWrapper>
         <LogoWrapper>
-          <Logo src={matches && matches[0].teams.home.logo} />
+          <Logo effect="blur" src={matches && matches[0].teams.home.logo} />
           <Title title="Home" small />
         </LogoWrapper>
         <Title title="VS" />
         <LogoWrapper>
-          <Logo src={matches && matches[0].teams.away.logo} />
+          <Logo effect="blur" src={matches && matches[0].teams.away.logo} />
           <Title title="Away" small />
         </LogoWrapper>
       </SecondWrapper>

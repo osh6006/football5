@@ -6,6 +6,9 @@ import { lighten } from "polished";
 import { CgMenuRight } from "@react-icons/all-files/cg/CgMenuRight";
 import { useState } from "react";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 interface MobileBarProps {
   menus: AllRouteType[];
 }
@@ -153,7 +156,7 @@ const BottomMenu = styled(NavLink)<MenuProps>`
   }}
 `;
 
-const MenuSvg = styled.img<MenuSvgProps>`
+const MenuSvg = styled(LazyLoadImage)<MenuSvgProps>`
   scale: ${(props) => props.$scale};
 `;
 
@@ -193,7 +196,7 @@ const MobileBar: React.FC<MobileBarProps> = ({ menus }) => {
         {menus &&
           menus?.map((menu) => (
             <BottomMenu key={menu.name} to={menu.path} $selectColor={menu.color}>
-              <MenuSvg alt="League Logo" src={menu.svg} $scale={menu.$mobileScale} />
+              <MenuSvg alt="League Logo" effect="blur" src={menu.svg} $scale={menu.$mobileScale} />
             </BottomMenu>
           ))}
       </BottomBarWrapper>

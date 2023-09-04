@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { Events } from "../../type/fixtures";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 interface EventProps {
   events?: Events[];
 }
@@ -29,7 +32,7 @@ const EventContents = styled.div`
   gap: 0.5rem;
 `;
 
-const Logo = styled.img`
+const Logo = styled(LazyLoadImage)`
   max-width: 20px;
 `;
 
@@ -41,7 +44,7 @@ const Event: React.FC<EventProps> = ({ events }) => {
         {events &&
           events.map((event) => (
             <EventContents key={event.time.elapsed}>
-              <Logo src={event.team.logo} alt="TeamLogo" />
+              <Logo src={event.team.logo} alt="TeamLogo" effect="blur" />
               {`${event.time.elapsed}" ${event.comments === null ? "" : event.comments} ${
                 event.detail === null ? "" : event.detail
               } - ${event.player.name}`}
