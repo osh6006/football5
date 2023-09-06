@@ -13,7 +13,7 @@ const OverViewWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 1rem;
-  padding: 2rem;
+  padding: 1rem;
 
   @media (max-width: 1280px) {
     flex-direction: column;

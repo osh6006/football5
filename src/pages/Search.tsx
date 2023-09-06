@@ -31,11 +31,14 @@ export default function Search() {
 
   return (
     <SearchWrapper>
-      <Title title="Search" />
+      <Title title="검색" />
       <SubTitle subtitle="리그 팀과 선수들을 검색해 보세요. " />
       <SearchContentsWrapper>
         <SearchContentHeader>
-          <SearchBar searchValue={searchValue} onSearchValueChange={handleSearchValueChange} />
+          <SearchBar
+            searchValue={searchValue}
+            onSearchValueChange={handleSearchValueChange}
+          />
         </SearchContentHeader>
         <StyledHr />
         <SearchResult searchValue={searchValue} />
