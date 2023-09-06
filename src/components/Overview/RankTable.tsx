@@ -15,7 +15,6 @@ interface TableProps {
 }
 
 const RankTableWrapper = styled.div`
-  margin-top: 2rem;
   font-family: sans-serif;
   font-weight: bold;
   border-radius: 10px;
@@ -55,6 +54,10 @@ const TabletOnlyHeaderCell = styled(TableHeaderCell)`
   }
 `;
 
+const TeamTableHeaderCell = styled(TableHeaderCell)`
+  text-align: left;
+`;
+
 const DesktopOnlyHeaderCell = styled(TableHeaderCell)`
   @media (max-width: 1080px) {
     display: none;
@@ -79,8 +82,7 @@ const DesktopOnlyTableCell = styled(TableCell)`
 `;
 
 const LogoNameWrapper = styled.span`
-  display: inline-flex;
-  justify-content: center;
+  display: flex;
   align-items: center;
   gap: 10px;
 `;
@@ -106,7 +108,6 @@ const RankTable = () => {
 
   return (
     <RankTableWrapper>
-      <SectionHeader title="리그 순위" src="123" />
       {isError && <Error message="데이터가 없습니다." />}
       {isLoading && <Loading />}
       {isLoading || (
@@ -115,7 +116,7 @@ const RankTable = () => {
             <thead>
               <tr>
                 <TableHeaderCell>순위</TableHeaderCell>
-                <TableHeaderCell>클럽</TableHeaderCell>
+                <TeamTableHeaderCell>클럽</TeamTableHeaderCell>
                 <TabletOnlyHeaderCell>경기 수</TabletOnlyHeaderCell>
                 <TabletOnlyHeaderCell>골득실</TabletOnlyHeaderCell>
                 <TableHeaderCell>승점</TableHeaderCell>
@@ -132,13 +133,21 @@ const RankTable = () => {
                         <TableCell>
                           <LogoNameWrapper>
                             <LogoWrapper $color={color || "#fff"}>
-                              <Logo effect="blur" src={team.team.logo} alt="TeamLogo" />
+                              <Logo
+                                effect="blur"
+                                src={team.team.logo}
+                                alt="TeamLogo"
+                              />
                             </LogoWrapper>
                             {team.team.name}
                           </LogoNameWrapper>
                         </TableCell>
-                        <TabletOnlyTableCell>{team.all.played}</TabletOnlyTableCell>
-                        <TabletOnlyTableCell>{team.goalsDiff}</TabletOnlyTableCell>
+                        <TabletOnlyTableCell>
+                          {team.all.played}
+                        </TabletOnlyTableCell>
+                        <TabletOnlyTableCell>
+                          {team.goalsDiff}
+                        </TabletOnlyTableCell>
                         <TableCell>{team.points}</TableCell>
                         <DesktopOnlyTableCell>{team.form}</DesktopOnlyTableCell>
                       </TableRow>

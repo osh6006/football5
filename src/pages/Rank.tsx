@@ -4,6 +4,9 @@ import useColor from "../hooks/useColor";
 import { lighten } from "polished";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
+import useLeagueId from "../hooks/useLeagueId";
+import RankTable from "../components/Overview/RankTable";
+import SeasonSelector from "../components/Rank/SeasonSelector";
 
 type currentRank = "player" | "team";
 
@@ -20,10 +23,10 @@ const RankTab = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1.5rem;
+  gap: 1rem;
 `;
 
 const TabBtn = styled.button<TabBtnProps>`
-  padding: 10px 20px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -37,7 +40,11 @@ const TabBtn = styled.button<TabBtnProps>`
 
 export default function Rank() {
   const color = useColor();
+  const leagueId = useLeagueId();
   const [currentRank, setCurrentRank] = useState<currentRank>("team");
+  const [selectSeason, setSelectSeason] = useState<number>(
+    new Date().getFullYear()
+  );
 
   const handleTab = (currRank: currentRank) => {
     setCurrentRank(currRank);
@@ -63,6 +70,11 @@ export default function Rank() {
           개인 순위
         </TabBtn>
       </RankTab>
+      <SeasonSelector
+        setSelectSeason={setSelectSeason}
+        currentSeason={selectSeason}
+      />
+      {currentRank === "team" && <RankTable />}
     </RankWrapper>
   );
 }

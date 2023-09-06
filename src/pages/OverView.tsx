@@ -7,6 +7,7 @@ import RankTable from "../components/Overview/RankTable";
 import Profile from "../components/Overview/Profile";
 import Live from "../components/Overview/Live";
 import PlayerList from "../components/Overview/PlayerList";
+import SectionHeader from "../components/Overview/SectionHeader";
 
 const OverViewWrapper = styled.div`
   position: relative;
@@ -40,8 +41,8 @@ const RightSideWrapper = styled.section`
   flex-direction: column;
   position: relative;
   width: 35%;
-  margin-top: 75px;
-  gap: 1.5rem;
+  margin-top: 59px;
+  gap: 1rem;
 
   @media (max-width: 1280px) {
     width: 100%;
@@ -74,6 +75,7 @@ export default function OverView() {
           <LatestMatches />
           <Live />
         </LeftSideTempWrapper>
+        <SectionHeader title="리그 순위" src="123" />
         <RankTable />
       </LeftSideWrapper>
       <RightSideWrapper>

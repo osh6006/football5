@@ -55,7 +55,6 @@ const PlayerList: React.FC<PlayerListProps> = ({ type, title }) => {
   return (
     <>
       <SectionHeader title={title} src="" />
-
       <ScorerWrapper>
         {isError && <Error message="데이터가 없습니다!" />}
         {isLoading && <Loading />}
@@ -66,7 +65,11 @@ const PlayerList: React.FC<PlayerListProps> = ({ type, title }) => {
                 index < 10 && (
                   <Player key={playerData.player.id}>
                     <ImageWrapper>
-                      <PlayerImg effect="blur" src={playerData.player.photo} alt="Profile" />
+                      <PlayerImg
+                        effect="blur"
+                        src={playerData.player.photo}
+                        alt="Profile"
+                      />
                       <Name>{playerData.player.name}</Name>
                     </ImageWrapper>
                     <Goals>{`${playerData.statistics[0].goals.total} ${

@@ -9,6 +9,7 @@ interface SectionHeaderProps {
 const SectionHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
 `;
 
 const SectionTitle = styled.h2`

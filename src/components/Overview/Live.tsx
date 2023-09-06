@@ -11,7 +11,7 @@ interface LiveSwitchProps {
 
 const LiveWrapper = styled.div`
   width: 30%;
-  padding: 1.5rem 1.5rem;
+  padding: 1rem 1rem;
   border-radius: ${(props) => props.theme.border.radius};
   background-color: ${(props) => props.theme.colors.secondBackground};
   min-width: 200px;
@@ -37,7 +37,7 @@ const TitleWrapper = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 `;
 
 const LiveSwitch = styled.div<LiveSwitchProps>`
@@ -48,7 +48,8 @@ const LiveSwitch = styled.div<LiveSwitchProps>`
   text-transform: uppercase;
   border-radius: 8px;
 
-  background-color: ${(props) => (props.$isLive && darken(0.3, "#9acd32")) || darken(0.3, "#cd3232")};
+  background-color: ${(props) =>
+    (props.$isLive && darken(0.3, "#9acd32")) || darken(0.3, "#cd3232")};
 
   &::after {
     content: "";
@@ -114,7 +115,9 @@ const Live = () => {
       {isLoading && <Loading />}
       <TitleWrapper>
         <SectionTitle>라이브</SectionTitle>
-        <LiveSwitch $isLive={(matches && matches.length >= 1 && true) || false}>live</LiveSwitch>
+        <LiveSwitch $isLive={(matches && matches.length >= 1 && true) || false}>
+          live
+        </LiveSwitch>
       </TitleWrapper>
       {isLoading ||
         (matches && matches.length > 0 && (

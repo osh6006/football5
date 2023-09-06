@@ -15,7 +15,7 @@ interface MatchProps {
 
 const LatestMatchesWrapper = styled.div`
   flex: 1;
-  padding: 1.5rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: ${(props) => props.theme.border.radius};
   background-color: ${(props) => props.theme.colors.secondBackground};
   min-width: 250px;
@@ -89,13 +89,25 @@ const LatestMatches = () => {
                 <SubTitle subtitle={matches[0].league.round || ""} />
                 <ScoreWrapper>
                   <LogoWrapper>
-                    <Logo effect="blur" src={matches[0].teams.home.logo || "Not-Name"} alt="logo" />
-                    <TeamName>{matches[0].teams.home.name || "Not-Name"}</TeamName>
+                    <Logo
+                      effect="blur"
+                      src={matches[0].teams.home.logo || "Not-Name"}
+                      alt="logo"
+                    />
+                    <TeamName>
+                      {matches[0].teams.home.name || "Not-Name"}
+                    </TeamName>
                   </LogoWrapper>
                   <Score>{`${matches[0].goals.home} : ${matches[0].goals.away}`}</Score>
                   <LogoWrapper>
-                    <Logo effect="blur" src={matches[0].teams.away.logo || "Not-Name"} alt="logo" />
-                    <TeamName>{matches[0].teams.away.name || "Not-Name"}</TeamName>
+                    <Logo
+                      effect="blur"
+                      src={matches[0].teams.away.logo || "Not-Name"}
+                      alt="logo"
+                    />
+                    <TeamName>
+                      {matches[0].teams.away.name || "Not-Name"}
+                    </TeamName>
                   </LogoWrapper>
                 </ScoreWrapper>
               </Match>
@@ -103,13 +115,25 @@ const LatestMatches = () => {
                 <SubTitle subtitle={matches[0].league.round || ""} />
                 <ScoreWrapper>
                   <LogoWrapper>
-                    <Logo effect="blur" src={matches[0].teams.home.logo || "Not-Name"} alt="logo" />
-                    <TeamName>{matches[0].teams.home.name || "Not-Name"}</TeamName>
+                    <Logo
+                      effect="blur"
+                      src={matches[0].teams.home.logo || "Not-Name"}
+                      alt="logo"
+                    />
+                    <TeamName>
+                      {matches[0].teams.home.name || "Not-Name"}
+                    </TeamName>
                   </LogoWrapper>
                   <Score>{`${matches[0].goals.home} : ${matches[0].goals.away}`}</Score>
                   <LogoWrapper>
-                    <Logo effect="blur" src={matches[0].teams.away.logo || "Not-Name"} alt="logo" />
-                    <TeamName>{matches[0].teams.away.name || "Not-Name"}</TeamName>
+                    <Logo
+                      effect="blur"
+                      src={matches[0].teams.away.logo || "Not-Name"}
+                      alt="logo"
+                    />
+                    <TeamName>
+                      {matches[0].teams.away.name || "Not-Name"}
+                    </TeamName>
                   </LogoWrapper>
                 </ScoreWrapper>
               </Match>
