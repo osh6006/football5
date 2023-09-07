@@ -12,6 +12,9 @@ import useFakePlayer from "../../hooks/fake/useFakePlayer";
 import useLeagueId from "../../hooks/useLeagueId";
 import usePlayer from "../../hooks/usePlayer";
 
+import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
+import { useNavigate } from "react-router-dom";
+
 interface PlayerRankTableProps {
   selectSeason: number;
 }
@@ -102,6 +105,14 @@ const TableCell = styled.td`
   padding: 1rem;
   vertical-align: middle;
   text-align: center;
+  white-space: nowrap;
+`;
+
+const TeamNameTableCell = styled(TableCell)`
+  &:hover {
+    text-decoration: underline;
+  }
+  cursor: pointer;
 `;
 
 const TabletOnlyTableCell = styled(TableCell)`
@@ -114,6 +125,13 @@ const DesktopOnlyTableCell = styled(TableCell)`
   @media (max-width: 1080px) {
     display: none;
   }
+`;
+
+const DesktopOnlyTeamNameCell = styled(DesktopOnlyTableCell)`
+  &:hover {
+    text-decoration: underline;
+  }
+  cursor: pointer;
 `;
 
 const LogoNameWrapper = styled.span`
@@ -139,6 +157,7 @@ const Logo = styled(LazyLoadImage)`
 const PlayerRankTable: React.FC<PlayerRankTableProps> = ({ selectSeason }) => {
   const color = useColor();
   const leagueId = useLeagueId();
+  const navigate = useNavigate();
 
   const [playerType, setPlayerType] = useState<TopPlayer>("topscorers");
   const handlePlayerTab = (type: TopPlayer) => {
@@ -216,7 +235,13 @@ const PlayerRankTable: React.FC<PlayerRankTableProps> = ({ selectSeason }) => {
                           key={player.player.id}
                         >
                           <TableCell>{index + 1}</TableCell>
-                          <TableCell>
+                          <TeamNameTableCell
+                            onClick={() => {
+                              navigate(
+                                `/league/${leagueId}/player/${player.player.id}`
+                              );
+                            }}
+                          >
                             <LogoNameWrapper>
                               <LogoWrapper $color={color || "#fff"}>
                                 <Logo
@@ -226,9 +251,16 @@ const PlayerRankTable: React.FC<PlayerRankTableProps> = ({ selectSeason }) => {
                                 />
                               </LogoWrapper>
                               {player.player.name}
+                              <BiLinkExternal />
                             </LogoNameWrapper>
-                          </TableCell>
-                          <DesktopOnlyTableCell>
+                          </TeamNameTableCell>
+                          <DesktopOnlyTeamNameCell
+                            onClick={() => {
+                              navigate(
+                                `/league/${leagueId}/team/${player.statistics[0].team.id}`
+                              );
+                            }}
+                          >
                             <LogoNameWrapper>
                               <LogoWrapper $color={color || "#fff"}>
                                 <Logo
@@ -238,8 +270,9 @@ const PlayerRankTable: React.FC<PlayerRankTableProps> = ({ selectSeason }) => {
                                 />
                               </LogoWrapper>
                               {player.statistics[0].team.name}
+                              <BiLinkExternal />
                             </LogoNameWrapper>
-                          </DesktopOnlyTableCell>
+                          </DesktopOnlyTeamNameCell>
                           <TabletOnlyTableCell>
                             {player.statistics[0].games.minutes}
                           </TabletOnlyTableCell>

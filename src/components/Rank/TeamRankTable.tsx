@@ -8,8 +8,12 @@ import Error from "../common/Error";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+
+import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
+
 import useTeam from "../../hooks/useTeam";
 import useLeagueId from "../../hooks/useLeagueId";
+import { useNavigate } from "react-router-dom";
 
 interface TeamRankTableProps {
   selectSeason: number;
@@ -76,6 +80,13 @@ const TableCell = styled.td`
   text-align: center;
 `;
 
+const TeamNameTableCell = styled(TableCell)`
+  &:hover {
+    text-decoration: underline;
+  }
+  cursor: pointer;
+`;
+
 const TabletOnlyTableCell = styled(TableCell)`
   @media (max-width: 970px) {
     display: none;
@@ -110,6 +121,7 @@ const Logo = styled(LazyLoadImage)`
 const TeamRankTable: React.FC<TeamRankTableProps> = ({ selectSeason }) => {
   const color = useColor();
   const leagueId = useLeagueId();
+  const navigate = useNavigate();
 
   const {
     fakeStandingsQuery: { data: teams, isLoading, isError },
@@ -146,7 +158,13 @@ const TeamRankTable: React.FC<TeamRankTableProps> = ({ selectSeason }) => {
                     index >= 0 && (
                       <TableRow $color={color || "#fff"} key={team.team.id}>
                         <TableCell>{index + 1}</TableCell>
-                        <TableCell>
+                        <TeamNameTableCell
+                          onClick={() => {
+                            navigate(
+                              `/league/${leagueId}/team/${team.team.id}`
+                            );
+                          }}
+                        >
                           <LogoNameWrapper>
                             <LogoWrapper $color={color || "#fff"}>
                               <Logo
@@ -156,8 +174,9 @@ const TeamRankTable: React.FC<TeamRankTableProps> = ({ selectSeason }) => {
                               />
                             </LogoWrapper>
                             {team.team.name}
+                            <BiLinkExternal />
                           </LogoNameWrapper>
-                        </TableCell>
+                        </TeamNameTableCell>
                         <TabletOnlyTableCell>
                           {team.all.played}
                         </TabletOnlyTableCell>
