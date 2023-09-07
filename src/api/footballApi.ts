@@ -9,7 +9,11 @@ const basicOpt = {
 };
 
 // 최근 경기를 가져온다.
-export async function getLatestMatches(leagueId: number, season: number, matches: number) {
+export async function getLatestMatches(
+  leagueId: number,
+  season: number,
+  matches: number
+) {
   if (leagueId && season && matches) {
     const option = {
       ...basicOpt,
@@ -34,7 +38,11 @@ export async function getLatestMatches(leagueId: number, season: number, matches
 }
 
 // 다음 경기를 가져온다.
-export async function getNextMatches(leagueId: number, season: number, matches: number) {
+export async function getNextMatches(
+  leagueId: number,
+  season: number,
+  matches: number
+) {
   if (leagueId && season && matches) {
     const option = {
       ...basicOpt,
@@ -108,7 +116,11 @@ export async function getLeagueRanking(leagueId: number, season: number) {
 }
 
 // 각 분야별 탑 플레이어들을 가져온다.
-export async function getTopPlayer(leagueId: number, season: number, type: string) {
+export async function getTopPlayer(
+  leagueId: number,
+  season: number,
+  type: string
+) {
   if (leagueId && season && type) {
     const option = {
       ...basicOpt,
@@ -132,7 +144,12 @@ export async function getTopPlayer(leagueId: number, season: number, type: strin
 }
 
 // 리그 스케쥴을 가져온다.
-export async function getLeagueSchedule(leagueId: number, season: number, start: string, end: string) {
+export async function getLeagueSchedule(
+  leagueId: number,
+  season: number,
+  start: string,
+  end: string
+) {
   if (season && leagueId && start && end) {
     const option = {
       ...basicOpt,
@@ -247,5 +264,20 @@ export async function getCoachTeam(leagueId: number, name: string) {
     }
   } else {
     throw new Error("NOT PARAMETER IN GET_SEARCH_TEAM");
+  }
+}
+
+// 리그와 상관없이 시즌을 모두 가져온다.
+export async function getAllSeason() {
+  const option = {
+    ...basicOpt,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}leagues/seasons`,
+  };
+  try {
+    const response = await axios.request(option);
+    return response.data.response;
+  } catch (error) {
+    console.error(error);
+    throw new Error("ERROR GET DATA IN GET_ALL_SEASON");
   }
 }

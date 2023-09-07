@@ -9,6 +9,10 @@ import Error from "../common/Error";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
+interface TeamRankTableProps {
+  selectSeason: number;
+}
+
 interface TableProps {
   $color: string;
 }
@@ -101,7 +105,7 @@ const Logo = styled(LazyLoadImage)`
   width: 25px;
 `;
 
-const RankTable = () => {
+const TeamRankTable: React.FC<TeamRankTableProps> = ({ selectSeason }) => {
   const {
     fakeStandingsQuery: { data: teams, isLoading, isError },
   } = useFakeStandings();
@@ -119,6 +123,9 @@ const RankTable = () => {
                 <TableHeaderCell>순위</TableHeaderCell>
                 <TeamTableHeaderCell>클럽</TeamTableHeaderCell>
                 <TabletOnlyHeaderCell>경기 수</TabletOnlyHeaderCell>
+                <TabletOnlyHeaderCell>승</TabletOnlyHeaderCell>
+                <TabletOnlyHeaderCell>무</TabletOnlyHeaderCell>
+                <TabletOnlyHeaderCell>패</TabletOnlyHeaderCell>
                 <TabletOnlyHeaderCell>골득실</TabletOnlyHeaderCell>
                 <TableHeaderCell>승점</TableHeaderCell>
                 <DesktopOnlyHeaderCell>최근 경기</DesktopOnlyHeaderCell>
@@ -128,7 +135,7 @@ const RankTable = () => {
               {teams &&
                 teams[0]?.league?.standings[0]?.map(
                   (team: Standing, index: number) =>
-                    index < 10 && (
+                    index >= 0 && (
                       <TableRow $color={color || "#fff"} key={team.team.id}>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>
@@ -147,6 +154,15 @@ const RankTable = () => {
                           {team.all.played}
                         </TabletOnlyTableCell>
                         <TabletOnlyTableCell>
+                          {team.all.win}
+                        </TabletOnlyTableCell>
+                        <TabletOnlyTableCell>
+                          {team.all.draw}
+                        </TabletOnlyTableCell>
+                        <TabletOnlyTableCell>
+                          {team.all.lose}
+                        </TabletOnlyTableCell>
+                        <TabletOnlyTableCell>
                           {team.goalsDiff}
                         </TabletOnlyTableCell>
                         <TableCell>{team.points}</TableCell>
@@ -162,4 +178,4 @@ const RankTable = () => {
   );
 };
 
-export default RankTable;
+export default TeamRankTable;

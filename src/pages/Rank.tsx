@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import useColor from "../hooks/useColor";
 import { lighten } from "polished";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
 import useLeagueId from "../hooks/useLeagueId";
-import RankTable from "../components/Overview/RankTable";
 import SeasonSelector from "../components/Rank/SeasonSelector";
+import { getAllSeason } from "../api/footballApi";
+import TeamRankTable from "../components/Rank/TeamRankTable";
+import PlayerRankTable from "../components/Rank/PlayerRankTable";
 
 type currentRank = "player" | "team";
 
@@ -33,15 +35,22 @@ const TabBtn = styled.button<TabBtnProps>`
   outline: none;
   font-size: 1.25rem;
   color: white;
+  transition: all 0.3s ease;
 
   font-weight: ${(props) => (props.$active ? "bold" : "normal")};
   color: ${(props) => (props.$active ? lighten(0.4, props.$color) : "")};
+
+  &:hover {
+    font-weight: bold;
+    color: ${(props) => lighten(0.4, props.$color)};
+  }
 `;
 
 export default function Rank() {
   const color = useColor();
   const leagueId = useLeagueId();
   const [currentRank, setCurrentRank] = useState<currentRank>("team");
+  const [seasonRange, setSeasonRange] = useState<number[] | null>(null);
   const [selectSeason, setSelectSeason] = useState<number>(
     new Date().getFullYear()
   );
@@ -49,6 +58,12 @@ export default function Rank() {
   const handleTab = (currRank: currentRank) => {
     setCurrentRank(currRank);
   };
+
+  // useEffect(() => {
+  //   getAllSeason()
+  //     .then((result: number[]) => setSeasonRange(result))
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   return (
     <RankWrapper>
@@ -73,8 +88,12 @@ export default function Rank() {
       <SeasonSelector
         setSelectSeason={setSelectSeason}
         currentSeason={selectSeason}
+        seasonRange={seasonRange}
       />
-      {currentRank === "team" && <RankTable />}
+      {currentRank === "team" && <TeamRankTable selectSeason={selectSeason} />}
+      {currentRank === "player" && (
+        <PlayerRankTable selectSeason={selectSeason} />
+      )}
     </RankWrapper>
   );
 }

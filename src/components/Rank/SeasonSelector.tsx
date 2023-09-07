@@ -8,6 +8,7 @@ import { BsFillCaretRightFill } from "@react-icons/all-files/bs/BsFillCaretRight
 interface SeasonSelectorProps {
   setSelectSeason: (year: number) => void;
   currentSeason: number;
+  seasonRange: number[] | null;
 }
 
 const SeasonSelectorWrapper = styled.div`
@@ -28,11 +29,15 @@ const NextBtn = styled(BackBtn)``;
 const SeasonSelector: React.FC<SeasonSelectorProps> = ({
   currentSeason,
   setSelectSeason,
+  seasonRange,
 }) => {
   const increase = () => {
+    if (seasonRange && seasonRange[seasonRange.length - 1] <= currentSeason)
+      return;
     setSelectSeason(currentSeason + 1);
   };
   const decrease = () => {
+    if (seasonRange && seasonRange[0] >= currentSeason) return;
     setSelectSeason(currentSeason - 1);
   };
 
