@@ -1,17 +1,21 @@
-import styled from "styled-components";
-import useFakeStandings from "../../hooks/fake/useFakeStandings";
-import Loading from "../common/Loading";
-import { Standing } from "../../type/standings";
+import { useNavigate } from "react-router-dom";
+
 import useColor from "../../hooks/useColor";
+import useLeagueId from "../../hooks/useLeagueId";
+
+import styled from "styled-components";
 import { mix } from "polished";
+
 import Error from "../common/Error";
+import Loading from "../common/Loading";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
+import { Standing } from "../../type/standings";
+import useFakeStandings from "../../hooks/fake/useFakeStandings";
+
 import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
-import { useNavigate } from "react-router-dom";
-import useLeagueId from "../../hooks/useLeagueId";
 
 interface TableProps {
   $color: string;

@@ -6,6 +6,10 @@ import Error from "../common/Error";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import useLeagueId from "../../hooks/useLeagueId";
+import { useNavigate } from "react-router-dom";
+
+import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
 
 interface PlayerListProps {
   title: string;
@@ -38,10 +42,18 @@ const PlayerImg = styled(LazyLoadImage)`
   width: 40px;
   border-radius: 100%;
 `;
-const Name = styled.div``;
+const Name = styled.div`
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 const Goals = styled.div``;
 
 const PlayerList: React.FC<PlayerListProps> = ({ type, title }) => {
+  const leagueId = useLeagueId();
+  const navigate = useNavigate();
+
   const {
     topScorerQuery: { data: players, isLoading, isError },
   } = useFakePlayer();
@@ -70,7 +82,16 @@ const PlayerList: React.FC<PlayerListProps> = ({ type, title }) => {
                         src={playerData.player.photo}
                         alt="Profile"
                       />
-                      <Name>{playerData.player.name}</Name>
+                      <Name
+                        onClick={() => {
+                          navigate(
+                            `/league/${leagueId}/player/${playerData.player.id}`
+                          );
+                        }}
+                      >
+                        {playerData.player.name}
+                      </Name>
+                      <BiLinkExternal />
                     </ImageWrapper>
                     <Goals>{`${playerData.statistics[0].goals.total} ${
                       (type === "topscorers" && "골") || "도움"
