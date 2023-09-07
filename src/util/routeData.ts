@@ -30,7 +30,10 @@ export interface ChildRouteType extends AllRouteType {
   activeIcon: IconType;
 }
 
-export const SecondSidebarRoutes: Omit<ChildRouteType, "svg" | "$scale" | "color" | "$mobileScale" | "id">[] = [
+export const SecondSidebarRoutes: Omit<
+  ChildRouteType,
+  "svg" | "$scale" | "color" | "$mobileScale" | "id"
+>[] = [
   {
     name: "Overview",
     path: "/overview",
@@ -60,12 +63,6 @@ export const SecondSidebarRoutes: Omit<ChildRouteType, "svg" | "$scale" | "color
     path: "/rank",
     activeIcon: ranking,
     icon: ranking,
-  },
-  {
-    name: "Top",
-    path: "/top",
-    activeIcon: activeTop,
-    icon: top,
   },
 ];
 

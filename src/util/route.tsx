@@ -40,10 +40,6 @@ const router = createBrowserRouter([
                 path: "search",
                 element: <Search />,
               },
-              {
-                path: "top",
-                element: <div>Hello Rank</div>,
-              },
             ],
           },
         ],
