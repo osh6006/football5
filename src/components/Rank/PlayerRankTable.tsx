@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Loading from "../common/Loading";
-import { Standing } from "../../type/standings";
 import useColor from "../../hooks/useColor";
 import { lighten, mix } from "polished";
 import Error from "../common/Error";
@@ -10,7 +9,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import useFakePlayer from "../../hooks/fake/useFakePlayer";
-import { Player } from "../../type/player";
+import useLeagueId from "../../hooks/useLeagueId";
+import usePlayer from "../../hooks/usePlayer";
 
 interface PlayerRankTableProps {
   selectSeason: number;
@@ -137,15 +137,21 @@ const Logo = styled(LazyLoadImage)`
 `;
 
 const PlayerRankTable: React.FC<PlayerRankTableProps> = ({ selectSeason }) => {
-  const {
-    topScorerQuery: { data: players, isLoading, isError },
-  } = useFakePlayer();
   const color = useColor();
+  const leagueId = useLeagueId();
 
   const [playerType, setPlayerType] = useState<TopPlayer>("topscorers");
   const handlePlayerTab = (type: TopPlayer) => {
     setPlayerType(type);
   };
+
+  const {
+    topScorerQuery: { data: players, isLoading, isError },
+  } = useFakePlayer();
+
+  //   const {
+  //     topPlayerQuery: { data: players, isLoading, isError },
+  //   } = usePlayer(leagueId, selectSeason, playerType);
 
   return (
     <>

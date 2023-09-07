@@ -92,7 +92,7 @@ export async function getLiveMatches(leagueId: number, season: number) {
 }
 
 // 리그 순위를 가져온다.
-export async function getLeagueRanking(leagueId: number, season: number) {
+export async function getLeagueRanking(leagueId?: number, season?: number) {
   if (leagueId && season) {
     const option = {
       ...basicOpt,

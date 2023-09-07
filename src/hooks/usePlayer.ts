@@ -9,7 +9,7 @@ function usePlayer(leagueId: number, season: number, type?: string) {
   }
 
   const topPlayerQuery = useQuery({
-    queryKey: ["topPlayer"],
+    queryKey: ["topPlayer", leagueId, tempSeason, type],
     queryFn: () => getTopPlayer(leagueId, tempSeason, type || "topscorers"),
     enabled: !!leagueId && !!type && !!season,
     staleTime: 1000 * 60,

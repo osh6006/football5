@@ -8,6 +8,8 @@ import Error from "../common/Error";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import useTeam from "../../hooks/useTeam";
+import useLeagueId from "../../hooks/useLeagueId";
 
 interface TeamRankTableProps {
   selectSeason: number;
@@ -106,10 +108,16 @@ const Logo = styled(LazyLoadImage)`
 `;
 
 const TeamRankTable: React.FC<TeamRankTableProps> = ({ selectSeason }) => {
+  const color = useColor();
+  const leagueId = useLeagueId();
+
   const {
     fakeStandingsQuery: { data: teams, isLoading, isError },
   } = useFakeStandings();
-  const color = useColor();
+
+  // const {
+  //   teamRankQuery: { data: teams, isLoading, isError },
+  // } = useTeam(leagueId, selectSeason);
 
   return (
     <RankTableWrapper>
