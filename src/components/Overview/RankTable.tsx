@@ -9,6 +9,10 @@ import Error from "../common/Error";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
+import { BiLinkExternal } from "@react-icons/all-files/bi/BiLinkExternal";
+import { useNavigate } from "react-router-dom";
+import useLeagueId from "../../hooks/useLeagueId";
+
 interface TableProps {
   $color: string;
 }
@@ -70,6 +74,13 @@ const TableCell = styled.td`
   text-align: center;
 `;
 
+const TeamNameTableCell = styled(TableCell)`
+  &:hover {
+    text-decoration: underline;
+  }
+  cursor: pointer;
+`;
+
 const TabletOnlyTableCell = styled(TableCell)`
   @media (max-width: 970px) {
     display: none;
@@ -105,7 +116,9 @@ const RankTable = () => {
   const {
     fakeStandingsQuery: { data: teams, isLoading, isError },
   } = useFakeStandings();
+  const leagueId = useLeagueId();
   const color = useColor();
+  const navigate = useNavigate();
 
   return (
     <RankTableWrapper>
@@ -131,7 +144,13 @@ const RankTable = () => {
                     index < 10 && (
                       <TableRow $color={color || "#fff"} key={team.team.id}>
                         <TableCell>{index + 1}</TableCell>
-                        <TableCell>
+                        <TeamNameTableCell
+                          onClick={() => {
+                            navigate(
+                              `/league/${leagueId}/team/${team.team.id}`
+                            );
+                          }}
+                        >
                           <LogoNameWrapper>
                             <LogoWrapper $color={color || "#fff"}>
                               <Logo
@@ -141,8 +160,9 @@ const RankTable = () => {
                               />
                             </LogoWrapper>
                             {team.team.name}
+                            <BiLinkExternal />
                           </LogoNameWrapper>
-                        </TableCell>
+                        </TeamNameTableCell>
                         <TabletOnlyTableCell>
                           {team.all.played}
                         </TabletOnlyTableCell>

@@ -40,6 +40,14 @@ const router = createBrowserRouter([
                 path: "search",
                 element: <Search />,
               },
+              {
+                path: "player/:playerId",
+                element: <div>player detail</div>,
+              },
+              {
+                path: "team/:teamId",
+                element: <div>team detail</div>,
+              },
             ],
           },
         ],
