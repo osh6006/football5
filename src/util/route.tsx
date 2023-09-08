@@ -7,6 +7,7 @@ import Schedule from "../pages/Schedule";
 import Live from "../pages/Live";
 import Search from "../pages/Search";
 import Rank from "../pages/Rank";
+import PlayerDetail from "../pages/PlayerDetail";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "player/:playerId",
-                element: <div>player detail</div>,
+                element: <PlayerDetail />,
               },
               {
                 path: "team/:teamId",

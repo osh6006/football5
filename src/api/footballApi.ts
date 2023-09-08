@@ -281,3 +281,41 @@ export async function getAllSeason() {
     throw new Error("ERROR GET DATA IN GET_ALL_SEASON");
   }
 }
+
+// 선수 아이디에 맞는 선수 정보를 불러온다.
+export async function getPlayerDetail(playerId: number, sesason: string) {
+  const option = {
+    ...basicOpt,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}players`,
+    params: {
+      id: playerId,
+      sesason,
+    },
+  };
+
+  try {
+    const response = await axios.request(option);
+    return response.data.response;
+  } catch (error) {
+    console.error(error);
+    throw new Error("ERROR GET DATA IN GET_PLAYER_DEtAIL");
+  }
+}
+
+export async function getPlayerTrophies(playerId: number) {
+  const option = {
+    ...basicOpt,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}players`,
+    params: {
+      id: playerId,
+    },
+  };
+
+  try {
+    const response = await axios.request(option);
+    return response.data.response;
+  } catch (error) {
+    console.error(error);
+    throw new Error("ERROR GET DATA IN GET_PLAYER_TROPHIES");
+  }
+}

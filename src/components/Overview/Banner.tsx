@@ -8,9 +8,6 @@ import SubTitle from "../common/SubTitle";
 import { timeStampToDate } from "../../util/date";
 import Button from "../common/Button";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-
 // import useLeagueId from "../../hooks/useLeagueId";
 // import useFixtures from "../../hooks/useFixtures";
 
@@ -75,8 +72,13 @@ const LogoWrapper = styled.div`
   gap: 1rem;
 `;
 
-const Logo = styled(LazyLoadImage)`
+const Logo = styled.img`
   width: 60%;
+
+  max-width: 150px;
+  @media (min-width: 1280px) {
+    width: 80%;
+  }
 `;
 
 const Banner = () => {
@@ -114,10 +116,22 @@ const Banner = () => {
           <Title title="다음 경기" />
         </HeaderWrapper>
 
-        <Title title={(matches && `${matches[0].teams.home.name} VS ${matches[0].teams.away.name}`) || ""} />
-        <SubTitle subtitle={(matches && timeStampToDate(matches[0].fixture.date)) || ""} />
+        <Title
+          title={
+            (matches &&
+              `${matches[0].teams.home.name} VS ${matches[0].teams.away.name}`) ||
+            ""
+          }
+        />
         <SubTitle
-          subtitle={(matches && `in ${matches[0].fixture.venue.name}, ${matches[0].fixture.venue.city}`) || ""}
+          subtitle={(matches && timeStampToDate(matches[0].fixture.date)) || ""}
+        />
+        <SubTitle
+          subtitle={
+            (matches &&
+              `in ${matches[0].fixture.venue.name}, ${matches[0].fixture.venue.city}`) ||
+            ""
+          }
         />
         <ButtonWrapper>
           <Button onClick={() => {}}>더 보기 &#8250;</Button>
@@ -125,12 +139,12 @@ const Banner = () => {
       </TitleWrapper>
       <SecondWrapper>
         <LogoWrapper>
-          <Logo effect="blur" src={matches && matches[0].teams.home.logo} />
+          <Logo src={matches && matches[0].teams.home.logo} />
           <Title title="Home" small />
         </LogoWrapper>
         <Title title="VS" />
         <LogoWrapper>
-          <Logo effect="blur" src={matches && matches[0].teams.away.logo} />
+          <Logo src={matches && matches[0].teams.away.logo} />
           <Title title="Away" small />
         </LogoWrapper>
       </SecondWrapper>
