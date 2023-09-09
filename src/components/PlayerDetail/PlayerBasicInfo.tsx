@@ -15,6 +15,11 @@ const PlayerBasicInfoWrapper = styled.div`
   padding-bottom: 2rem;
 
   border-bottom: 2px solid ${(props) => props.theme.colors.gray};
+
+  @media (max-width: 500px) {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
 `;
 
 const HeaderWrapper = styled.div`
