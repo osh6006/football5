@@ -307,20 +307,25 @@ export async function getPlayerDetail(playerId: number, season: number) {
   }
 }
 
+// 선수의 수상 경력을 불러온다.
 export async function getPlayerTrophies(playerId: number) {
   const option = {
     ...basicOpt,
-    url: `${import.meta.env.VITE_FOOTBALL_API_URL}players`,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}trophies`,
     params: {
-      id: playerId,
+      player: playerId,
     },
   };
 
-  try {
-    const response = await axios.request(option);
-    return response.data.response;
-  } catch (error) {
-    console.error(error);
-    throw new Error("ERROR GET DATA IN GET_PLAYER_TROPHIES");
+  if (playerId) {
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_PLAYER_TROPHIES");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_PLAYER_TROPHIES");
   }
 }

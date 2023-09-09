@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPlayerDetailResult, getTopScorer } from "../../api/fakeFootballAPI";
+import {
+  getPlayerDetailResult,
+  getPlayerTrophies,
+  getTopScorer,
+} from "../../api/fakeFootballAPI";
 import { Players } from "../../type/player";
+import { Trophie } from "../../type/trophies";
 
 export default function useFakePlayer() {
   const topScorerQuery = useQuery({
@@ -21,5 +26,14 @@ export default function useFakePlayer() {
     },
   });
 
-  return { topScorerQuery, playerDetailQuery };
+  const playerTrophiesQuery = useQuery({
+    queryKey: ["PlayerTrophies"],
+    queryFn: () => getPlayerTrophies(),
+    staleTime: 1000 * 60,
+    select(data): Trophie[] {
+      return data;
+    },
+  });
+
+  return { topScorerQuery, playerDetailQuery, playerTrophiesQuery };
 }

@@ -31,8 +31,17 @@ export default function PlayerDetail() {
 
   //   console.log(detail);
 
+  // const {
+  //   playerTrophieQuery: {
+  //     data: trophies,
+  //     isError: isTrophiesError,
+  //     isLoading: isTrophiesLoading,
+  //   },
+  // } = usePlayerDetail(Number(params.playerId), selectSeason);
+
   const {
     playerDetailQuery: { data: detail, isError, isLoading },
+    playerTrophiesQuery: { data: trophies },
   } = useFakePlayer();
 
   return (
@@ -59,7 +68,7 @@ export default function PlayerDetail() {
             <br />
             <TagTitle>수상 경력</TagTitle>
             <br />
-            <CareerTable />
+            <CareerTable trophies={trophies} />
           </>
         ))}
     </PlayerDetailWrapper>

@@ -31,3 +31,7 @@ export async function getSearchResult() {
 export async function getPlayerDetailResult() {
   return (await axios.get("/apifootball/playerDetail.json")).data.response;
 }
+
+export async function getPlayerTrophies() {
+  return (await axios.get("/apifootball/trophies.json")).data.response;
+}

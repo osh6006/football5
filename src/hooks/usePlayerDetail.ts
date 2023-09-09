@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPlayerDetail, getPlayerTrophies } from "../api/footballApi";
 import { Players } from "../type/player";
+import { Trophie } from "../type/trophies";
 
 export default function usePlayerDetail(playerId: number, season: number) {
   const playerDetailQuery = useQuery({
@@ -18,8 +19,8 @@ export default function usePlayerDetail(playerId: number, season: number) {
     queryFn: () => getPlayerTrophies(playerId),
     enabled: !!playerId,
     staleTime: 1000 * 60,
-    select(data) {
-      return data.response;
+    select(data): Trophie[] {
+      return data;
     },
   });
 
