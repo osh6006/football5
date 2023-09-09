@@ -90,7 +90,7 @@ interface Penalty {
 }
 
 export interface Player {
-  id: number | null;
+  id: number;
   name: string;
   firstname: string;
   lastname: string;
@@ -103,7 +103,7 @@ export interface Player {
   photo: string;
 }
 
-interface Statistics {
+export interface Statistics {
   team: Team;
   league: League;
   games: Game;

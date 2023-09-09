@@ -31,15 +31,16 @@ const SeasonSelector: React.FC<SeasonSelectorProps> = ({
   setSelectSeason,
   seasonRange,
 }) => {
-  const increase = () => {
+  const increase = useCallback(() => {
     if (seasonRange && seasonRange[seasonRange.length - 1] <= currentSeason)
       return;
     setSelectSeason(currentSeason + 1);
-  };
-  const decrease = () => {
+  }, [currentSeason, seasonRange, setSelectSeason]);
+
+  const decrease = useCallback(() => {
     if (seasonRange && seasonRange[0] >= currentSeason) return;
     setSelectSeason(currentSeason - 1);
-  };
+  }, [currentSeason, seasonRange, setSelectSeason]);
 
   return (
     <SeasonSelectorWrapper>

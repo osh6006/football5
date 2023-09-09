@@ -283,22 +283,27 @@ export async function getAllSeason() {
 }
 
 // 선수 아이디에 맞는 선수 정보를 불러온다.
-export async function getPlayerDetail(playerId: number, sesason: string) {
-  const option = {
-    ...basicOpt,
-    url: `${import.meta.env.VITE_FOOTBALL_API_URL}players`,
-    params: {
-      id: playerId,
-      sesason,
-    },
-  };
+export async function getPlayerDetail(playerId: number, season: number) {
+  if (playerId && season) {
+    const option = {
+      ...basicOpt,
+      url: `${import.meta.env.VITE_FOOTBALL_API_URL}players`,
+      params: {
+        id: playerId,
+        season,
+      },
+    };
 
-  try {
-    const response = await axios.request(option);
-    return response.data.response;
-  } catch (error) {
-    console.error(error);
-    throw new Error("ERROR GET DATA IN GET_PLAYER_DEtAIL");
+    try {
+      const response = await axios.request(option);
+
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_PLAYER_DEtAIL");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_PLAYER_DEtAIL");
   }
 }
 

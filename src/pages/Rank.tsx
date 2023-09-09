@@ -5,10 +5,11 @@ import { lighten } from "polished";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
 import useLeagueId from "../hooks/useLeagueId";
-import SeasonSelector from "../components/Rank/SeasonSelector";
+import SeasonSelector from "../components/common/SeasonSelector";
 import { getAllSeason } from "../api/footballApi";
 import TeamRankTable from "../components/Rank/TeamRankTable";
 import PlayerRankTable from "../components/Rank/PlayerRankTable";
+import useSeason from "../hooks/useSeason";
 
 type currentRank = "player" | "team";
 
@@ -49,11 +50,10 @@ const TabBtn = styled.button<TabBtnProps>`
 export default function Rank() {
   const color = useColor();
   const leagueId = useLeagueId();
+
   const [currentRank, setCurrentRank] = useState<currentRank>("team");
-  const [seasonRange, setSeasonRange] = useState<number[] | null>(null);
-  const [selectSeason, setSelectSeason] = useState<number>(
-    new Date().getFullYear()
-  );
+  const { seasonRange, selectSeason, setSeasonRange, setSelectSeason } =
+    useSeason();
 
   const handleTab = (currRank: currentRank) => {
     setCurrentRank(currRank);
