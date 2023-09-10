@@ -13,6 +13,8 @@ import StatTable from "../components/PlayerDetail/StatTable";
 import CareerTable from "../components/PlayerDetail/CareerTable";
 
 const PlayerDetailWrapper = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
   padding: 1rem;
 `;
 
@@ -34,8 +36,6 @@ export default function PlayerDetail() {
   // const {
   //   playerTrophieQuery: {
   //     data: trophies,
-  //     isError: isTrophiesError,
-  //     isLoading: isTrophiesLoading,
   //   },
   // } = usePlayerDetail(Number(params.playerId), selectSeason);
 

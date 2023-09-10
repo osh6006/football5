@@ -8,6 +8,7 @@ import Live from "../pages/Live";
 import Search from "../pages/Search";
 import Rank from "../pages/Rank";
 import PlayerDetail from "../pages/PlayerDetail";
+import TeamDetail from "../pages/TeamDetail";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "team/:teamId",
-                element: <div>team detail</div>,
+                element: <TeamDetail />,
               },
             ],
           },
