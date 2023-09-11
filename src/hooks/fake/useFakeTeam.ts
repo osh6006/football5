@@ -1,7 +1,10 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
-import React from "react";
-import { getTeamInfo, getTeamStat } from "../../api/fakeFootballAPI";
-import { TeamInfo } from "../../type/team";
+import { useQuery } from "@tanstack/react-query";
+import {
+  getTeamInfo,
+  getTeamLatestMatches,
+  getTeamStat,
+} from "../../api/fakeFootballAPI";
+import { TeamInfo, TeamStat } from "../../type/team";
 
 export default function useFakeTeam() {
   const teamInfoQuery = useQuery({
@@ -14,13 +17,19 @@ export default function useFakeTeam() {
   });
 
   const teamStatQuery = useQuery({
-    queryKey: ["FakeTeamInfo"],
+    queryKey: ["FakeTeamStat"],
     queryFn: () => getTeamStat(),
     staleTime: 1000 * 60,
-    select(data) {
+    select(data): TeamStat {
       return data;
     },
   });
 
-  return { teamInfoQuery, teamStatQuery };
+  const teamLatestMatches = useQuery({
+    queryKey: ["FakeTeamLatestMatches"],
+    queryFn: () => getTeamLatestMatches(),
+    staleTime: 1000 * 60,
+  });
+
+  return { teamInfoQuery, teamStatQuery, teamLatestMatches };
 }

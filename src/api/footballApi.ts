@@ -329,3 +329,30 @@ export async function getPlayerTrophies(playerId: number) {
     throw new Error("NOT PARAMETER IN GET_PLAYER_TROPHIES");
   }
 }
+
+// 팀 정보를 가져온다.
+
+// 팀 라인업을 가져온다.
+export async function getTeamLineUp(fixturesId: number) {
+  const option = {
+    ...basicOpt,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}fixtures`,
+    params: {
+      id: fixturesId,
+    },
+  };
+
+  if (fixturesId) {
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_TEAM_LINE_UP");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_TEAM_LINE_UP");
+  }
+}
+
+// 팀

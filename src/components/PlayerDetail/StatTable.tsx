@@ -30,42 +30,6 @@ const TableTitle = styled.h4`
   margin-bottom: 1rem;
 `;
 
-const TableTitleLogo = styled(LazyLoadImage)`
-  border-radius: 50%;
-  border: 1px solid white;
-`;
-
-const Table = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
-`;
-
-const Cell = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 10px;
-  font-size: 1.1rem;
-`;
-
-const Superscript = styled.sup`
-  color: ${(props) => props.theme.colors.gray};
-  font-size: 0.8rem;
-`;
-
 const StatTable: React.FC<StatTableProps> = ({ stats }) => {
   return (
     <StatTableWrapper>

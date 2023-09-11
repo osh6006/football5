@@ -52,7 +52,7 @@ export async function getTeamInfo() {
 
 // 팀 스탯 가져오기
 export async function getTeamStat() {
-  return (await axios.get("/apifootball/teamStatistic.json")).data.response[0];
+  return (await axios.get("/apifootball/teamStatistic.json")).data.response;
 }
 
 // 팀 라인 업 가져오기
@@ -63,6 +63,5 @@ export async function getTeamInjuries() {}
 
 // 팀 최근 경기 정보 가져오기
 export async function getTeamLatestMatches() {
-  return (await axios.get("/apifootball/latestTeamMatches.json")).data
-    .response[0];
+  return (await axios.get("/apifootball/latestTeamMatches.json")).data.response;
 }

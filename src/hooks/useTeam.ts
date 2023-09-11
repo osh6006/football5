@@ -13,13 +13,6 @@ function useTeam(leagueId?: number, season?: number) {
     },
   });
   return { teamRankQuery };
-
-  const results = useQueries({
-    queries: [
-      // { queryKey: ["post", 1], queryFn: fetchPost, staleTime: Infinity },
-      // { queryKey: ["post", 2], queryFn: fetchPost, staleTime: Infinity },
-    ],
-  });
 }
 
 export default useTeam;

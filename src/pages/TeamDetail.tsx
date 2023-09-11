@@ -9,6 +9,7 @@ import useFakeTeam from "../hooks/fake/useFakeTeam";
 import Error from "../components/common/Error";
 import Loading from "../components/common/Loading";
 import TeamBasicInfo from "../components/TeamDetail/TeamBasicInfo";
+import TeamStatTable from "../components/TeamDetail/TeamStatTable";
 
 const TeamDetailWrapper = styled.section`
   max-width: 1280px;
@@ -31,14 +32,19 @@ export default function TeamDetail() {
       isLoading: teamInfoLoading,
     },
     teamStatQuery: {
-      data: teamStat,
+      data: teamStats,
       isError: teamStatError,
       isLoading: teamStatLoading,
     },
+
+    teamLatestMatches: {
+      data: teamLatestMatches,
+      isError: teamLatestMatchesError,
+      isLoading: teamLatestMatchesLoading,
+    },
   } = useFakeTeam();
 
-  console.log(teamInfo);
-  console.log(teamStat);
+  console.log(teamLatestMatches);
 
   return (
     <TeamDetailWrapper>
@@ -50,14 +56,28 @@ export default function TeamDetail() {
         setSelectSeason={setSelectSeason}
       />
       {teamInfoError ||
-        (teamStatError && <Error message="데이터에 오류가 있습니다." />)}
-      {teamInfoLoading && teamStatLoading && <Loading />}
+        teamStatError ||
+        (teamLatestMatchesError && (
+          <Error message="데이터에 오류가 있습니다." />
+        ))}
+      {teamInfoLoading && teamStatLoading && teamLatestMatchesLoading && (
+        <Loading />
+      )}
       {teamInfoLoading ||
         teamInfoLoading ||
+        teamLatestMatchesLoading ||
         (teamInfo && (
           <>
             <TagTitle>팀 정보</TagTitle>
             <TeamBasicInfo teamInfo={teamInfo} />
+            <br />
+            <TagTitle>시즌 스탯</TagTitle>
+            <br />
+            <TeamStatTable
+              stats={teamStats}
+              lineUpId={teamLatestMatches[0].fixture.id}
+              teamId={teamInfo.team.id}
+            />
           </>
         ))}
     </TeamDetailWrapper>

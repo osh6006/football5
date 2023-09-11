@@ -15,13 +15,15 @@ const TeamBasicInfoWrapper = styled.div`
 
   border-bottom: 2px solid ${(props) => props.theme.colors.gray};
 
-  @media (max-width: 500px) {
-    flex-direction: column-reverse;
+  @media (max-width: 1040px) {
     gap: 1rem;
+    padding: 1rem;
+    flex-direction: column-reverse;
   }
 `;
 
 const HeaderWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   max-width: 500px;
@@ -30,11 +32,19 @@ const HeaderWrapper = styled.div`
 const Code = styled.h2`
   color: ${(props) => props.theme.colors.gray};
   font-size: 1rem;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 const Name = styled.h1`
   font-size: 4rem;
   font-weight: bold;
   margin-bottom: 1rem;
+
+  @media (max-width: 500px) {
+    font-size: 3rem;
+    text-align: center;
+  }
 `;
 
 const DescWrapper = styled.div`
@@ -61,7 +71,7 @@ const TeamBasicInfo: React.FC<TeamBasicInfoProps> = ({ teamInfo }) => {
         <Code>{teamInfo.team.code}</Code>
         <Name>{teamInfo.team.name}</Name>
         <DescWrapper>
-          <Desc>창단일</Desc>
+          <Desc>창단 년도</Desc>
           <Answer>{teamInfo?.team.founded}</Answer>
         </DescWrapper>
         <DescWrapper>
