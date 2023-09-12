@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "styled-components";
 import Title from "../components/common/Title";
 import SubTitle from "../components/common/SubTitle";
@@ -12,6 +11,7 @@ import TeamBasicInfo from "../components/TeamDetail/TeamBasicInfo";
 import TeamStatTable from "../components/TeamDetail/TeamStatTable";
 import useTeam from "../hooks/useTeam";
 import useLeagueId from "../hooks/useLeagueId";
+import TeamLatestMatches from "../components/TeamDetail/TeamLatestMatches";
 
 const TeamDetailWrapper = styled.section`
   max-width: 1280px;
@@ -67,6 +67,8 @@ export default function TeamDetail() {
   //     },
   //   } = useTeam(leagueId, selectSeason, params.teamId);
 
+  console.log(teamLatestMatches);
+
   return (
     <TeamDetailWrapper>
       <Title title="Team Info" />
@@ -100,6 +102,12 @@ export default function TeamDetail() {
               teamId={teamInfo.team.id}
               season={selectSeason}
             />
+            <br />
+            <TagTitle>시즌 현황</TagTitle>
+            <br />
+            <TagTitle>최근 경기</TagTitle>
+            <br />
+            <TeamLatestMatches matches={teamLatestMatches} />
           </>
         ))}
     </TeamDetailWrapper>

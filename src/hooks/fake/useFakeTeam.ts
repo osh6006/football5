@@ -5,6 +5,7 @@ import {
   getTeamStat,
 } from "../../api/fakeFootballAPI";
 import { TeamInfo, TeamStat } from "../../type/team";
+import { Match } from "../../type/fixtures";
 
 export default function useFakeTeam() {
   const teamInfoQuery = useQuery({
@@ -29,6 +30,9 @@ export default function useFakeTeam() {
     queryKey: ["FakeTeamLatestMatches"],
     queryFn: () => getTeamLatestMatches(),
     staleTime: 1000 * 60,
+    select(data): Match[] {
+      return data;
+    },
   });
 
   return { teamInfoQuery, teamStatQuery, teamLatestMatches };
