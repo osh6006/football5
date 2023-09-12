@@ -331,6 +331,80 @@ export async function getPlayerTrophies(playerId: number) {
 }
 
 // 팀 정보를 가져온다.
+export async function getTeamInfo(teamId?: string) {
+  const option = {
+    ...basicOpt,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}teams`,
+    params: {
+      id: teamId,
+    },
+  };
+
+  if (teamId) {
+    try {
+      const response = await axios.request(option);
+      return response.data.response[0];
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_TEAM_LATEST_MATCHES");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_TEAM_LATEST_MATCHES");
+  }
+}
+
+// 팀 스탯을 가져온다.
+export async function getTeamStat(
+  leagueId?: number,
+  teamId?: string,
+  season?: number
+) {
+  const option = {
+    ...basicOpt,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}teams/statistics`,
+    params: {
+      team: teamId,
+      league: leagueId,
+      season,
+    },
+  };
+  if (leagueId && teamId && season) {
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_TEAM_STAT");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_TEAM_STAT");
+  }
+}
+
+// 팀 최근 경기를 가져온다.
+export async function getTeamLatestMatches(teamId?: string, season?: number) {
+  const option = {
+    ...basicOpt,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}fixtures`,
+    params: {
+      team: teamId,
+      season,
+      last: 10,
+    },
+  };
+
+  if (teamId && season) {
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_TEAM_LATEST_MATCHES");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_TEAM_LATEST_MATCHES");
+  }
+}
 
 // 팀 라인업을 가져온다.
 export async function getTeamLineUp(fixturesId: number) {
@@ -355,4 +429,26 @@ export async function getTeamLineUp(fixturesId: number) {
   }
 }
 
-// 팀
+// 팀 부상선수를 가져온다.
+export async function getTeamInjuries(teamId?: number, season?: number) {
+  const option = {
+    ...basicOpt,
+    url: `${import.meta.env.VITE_FOOTBALL_API_URL}injuries`,
+    params: {
+      team: teamId,
+      season: season,
+    },
+  };
+
+  if (teamId && season) {
+    try {
+      const response = await axios.request(option);
+      return response.data.response;
+    } catch (error) {
+      console.error(error);
+      throw new Error("ERROR GET DATA IN GET_TEAM_INJURIES");
+    }
+  } else {
+    throw new Error("NOT PARAMETER IN GET_TEAM_INJURIES");
+  }
+}

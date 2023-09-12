@@ -5,7 +5,7 @@ import Error from "../common/Error";
 import { styled } from "styled-components";
 
 interface TeamLineUpProps {
-  lineUpId?: number;
+  lineUpId?: number | string;
   teamId?: number;
 }
 

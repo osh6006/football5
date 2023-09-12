@@ -4,8 +4,9 @@ import TeamStatTabs from "./TeamStatTabs";
 
 interface StatTableProps {
   stats?: TeamStat;
-  lineUpId?: number;
+  lineUpId?: number | string;
   teamId: number;
+  season: number;
 }
 
 const StatTableWrapper = styled.div`
@@ -33,6 +34,7 @@ const TeamStatTable: React.FC<StatTableProps> = ({
   stats,
   lineUpId,
   teamId,
+  season,
 }) => {
   return (
     <StatTableWrapper>
@@ -41,7 +43,12 @@ const TeamStatTable: React.FC<StatTableProps> = ({
           {/* <TableTitleLogo src={stat.league.logo} alt="league logo" /> */}
           <TableTitle>{stats?.team?.name}</TableTitle>
         </TitleWrapper>
-        <TeamStatTabs stat={stats} lineUpId={lineUpId} teamId={teamId} />
+        <TeamStatTabs
+          stat={stats}
+          lineUpId={lineUpId}
+          teamId={teamId}
+          season={season}
+        />
       </TableWrapper>
     </StatTableWrapper>
   );

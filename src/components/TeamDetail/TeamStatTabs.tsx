@@ -2,6 +2,7 @@ import { useState } from "react";
 import { css, styled } from "styled-components";
 import { TeamStat } from "../../type/team";
 import TeamLineUp from "./TeamLineUp";
+import TeamInjured from "./TeamInjured";
 
 type TabState =
   | "basic"
@@ -13,8 +14,9 @@ type TabState =
 
 interface StatTabsProps {
   stat?: TeamStat;
-  lineUpId?: number;
+  lineUpId?: number | string;
   teamId?: number;
+  season: number;
 }
 
 interface TabsProps {
@@ -73,7 +75,12 @@ const Superscript = styled.sup`
   font-size: 0.9rem;
 `;
 
-const TeamStatTabs: React.FC<StatTabsProps> = ({ stat, lineUpId, teamId }) => {
+const TeamStatTabs: React.FC<StatTabsProps> = ({
+  stat,
+  lineUpId,
+  teamId,
+  season,
+}) => {
   const [tabState, setTabState] = useState<TabState>("basic");
   const handleTabs = (type: TabState) => {
     setTabState(type);
@@ -226,24 +233,7 @@ const TeamStatTabs: React.FC<StatTabsProps> = ({ stat, lineUpId, teamId }) => {
         {tabState === "penalty" && (
           <>
             <Row>
-              <Cell>
-                <Superscript>횟수</Superscript>
-              </Cell>
-              <Cell>
-                <Superscript>승리</Superscript>
-              </Cell>
-              <Cell>
-                <Superscript>득점</Superscript>
-              </Cell>
-            </Row>
-            <br />
-            <Row>
-              <Cell>
-                <Superscript>세이브</Superscript>
-              </Cell>
-              <Cell>
-                <Superscript>실축</Superscript>
-              </Cell>
+              <TeamInjured teamId={teamId} season={season} />
             </Row>
           </>
         )}
