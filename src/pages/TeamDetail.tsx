@@ -12,6 +12,7 @@ import TeamStatTable from "../components/TeamDetail/TeamStatTable";
 import useTeam from "../hooks/useTeam";
 import useLeagueId from "../hooks/useLeagueId";
 import TeamLatestMatches from "../components/TeamDetail/TeamLatestMatches";
+import TeamStandings from "../components/TeamDetail/TeamStandings";
 
 const TeamDetailWrapper = styled.section`
   max-width: 1280px;
@@ -41,10 +42,16 @@ export default function TeamDetail() {
       isLoading: teamStatLoading,
     },
 
-    teamLatestMatches: {
+    teamLatestMatchesQuery: {
       data: teamLatestMatches,
       isError: teamLatestMatchesError,
       isLoading: teamLatestMatchesLoading,
+    },
+
+    teamStandingsQuery: {
+      data: teamStandings,
+      isError: teamStandingsError,
+      isLoading: teamStandingsLoading,
     },
   } = useFakeTeam();
 
@@ -67,7 +74,7 @@ export default function TeamDetail() {
   //     },
   //   } = useTeam(leagueId, selectSeason, params.teamId);
 
-  console.log(teamLatestMatches);
+  console.log(teamStandings);
 
   return (
     <TeamDetailWrapper>
@@ -80,12 +87,12 @@ export default function TeamDetail() {
       />
       {teamInfoError ||
         teamStatError ||
-        (teamLatestMatchesError && (
-          <Error message="데이터에 오류가 있습니다." />
-        ))}
-      {teamInfoLoading && teamStatLoading && teamLatestMatchesLoading && (
-        <Loading />
-      )}
+        teamLatestMatchesError ||
+        (teamStandingsError && <Error message="데이터에 오류가 있습니다." />)}
+      {teamInfoLoading ||
+        teamStatLoading ||
+        teamLatestMatchesLoading ||
+        (teamStandingsLoading && <Loading />)}
       {teamInfoLoading ||
         teamInfoLoading ||
         teamLatestMatchesLoading ||
@@ -105,6 +112,7 @@ export default function TeamDetail() {
             <br />
             <TagTitle>시즌 현황</TagTitle>
             <br />
+            <TeamStandings teamStandings={teamStandings} />
             <TagTitle>최근 경기</TagTitle>
             <br />
             <TeamLatestMatches matches={teamLatestMatches} />

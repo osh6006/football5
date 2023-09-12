@@ -65,3 +65,8 @@ export async function getTeamInjuries() {}
 export async function getTeamLatestMatches() {
   return (await axios.get("/apifootball/latestTeamMatches.json")).data.response;
 }
+
+// 팀 시즌 현황 가져오기
+export async function getTeamStandings() {
+  return (await axios.get("/apifootball/teamStandings.json")).data.response;
+}

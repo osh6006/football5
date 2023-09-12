@@ -21,6 +21,7 @@ const TeamLatestMatchesWrapper = styled.div`
 const MatchWrapper = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
 `;
 
 const HomeTeam = styled.div`
@@ -34,7 +35,11 @@ const HomeTeam = styled.div`
 
 const Score = styled.div`
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  gap: 1rem;
 `;
 
 const AwayTeam = styled.div`
@@ -58,6 +63,15 @@ const Logo = styled.img`
   border-radius: 50%;
 `;
 
+const IsWinner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 4px;
+  border-radius: 50%;
+`;
+
 const TeamLatestMatches: React.FC<TeamLatestMatchesProps> = ({ matches }) => {
   return (
     <TeamLatestMatchesWrapper>
@@ -73,9 +87,23 @@ const TeamLatestMatches: React.FC<TeamLatestMatchesProps> = ({ matches }) => {
             {match.teams.home.name}
             <Logo src={match.teams.home.logo} alt="home logo" />
           </HomeTeam>
-          <Score>{`${match.teams.home.winner ? "승" : "패"} VS ${
-            match.teams.away.winner ? "승" : "패"
-          }`}</Score>
+          <Score>
+            <IsWinner
+              style={{
+                backgroundColor: `${match.teams.home.winner ? "blue" : "red"}`,
+              }}
+            >
+              {match.teams.home.winner ? "승" : "패"}
+            </IsWinner>
+            {` ${match.goals.home} VS ${match.goals.away}`}
+            <IsWinner
+              style={{
+                backgroundColor: `${match.teams.away.winner ? "blue" : "red"}`,
+              }}
+            >
+              {match.teams.away.winner ? "승" : "패"}
+            </IsWinner>
+          </Score>
           <AwayTeam>
             <Logo src={match.teams.away.logo} alt="away logo" />
             {match.teams.away.name}
